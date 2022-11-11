@@ -2,8 +2,21 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Button, Image } from 'react-native';
 import axios from "axios";
 import { VictoryLine } from 'victory-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-export default function App() {
+const Stack = createNativeStackNavigator();
+
+function LoginScreen({navigation}){
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Details Screen</Text>
+      <Button title="go to main screen aka home screen" onPress={()=>navigation.push('HomeScreen')}/>
+    </View>
+  );
+}
+
+function HomeScreen() {
 	const [ data, setData ] = useState()
 	const [ coin, setCoin ] = useState("bitcoin")
 	const [ period, setPeriod ] = useState(30)
@@ -35,7 +48,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-			<Text style={styles.header}>CryptoChart</Text>
+			<Text style={styles.header}>DekuChart</Text>
 			<Image source={{uri: 'https://user-images.githubusercontent.com/60609786/200855727-22e055e7-ca4c-453c-b973-c7bdd1c56d57.png'}} style={styles.crypto} />
 			<View style={styles.gap}/>
 			<View style={styles.coins}>
@@ -92,6 +105,19 @@ export default function App() {
 		</View>
   )
 }
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="WelCome to DekuChart" component={LoginScreen} />
+        <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+export default App;
 
 const styles = StyleSheet.create({
   container: {
