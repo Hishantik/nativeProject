@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Text, Button, Stylesheet } from 'react-native';
+import { View, Text, Button, StyleSheet } from 'react-native';
 
 const ProfileScreen = () => {
   return(
-  <View style = { styles.conatiner } >
+  <View style = { styles.container } >
     <Text>Profile Screen</Text>
     <Button title="Click here" onPress={()=>alert('Button clicked')}
     />
@@ -13,7 +13,7 @@ const ProfileScreen = () => {
 
 export default ProfileScreen;
 
-const styles = Stylesheet.create({
+const styles = StyleSheet.create({
   container: {
     flex:1,
     justifyContent:'center',

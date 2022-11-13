@@ -2,12 +2,13 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+// import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
-import LoginScreen from './screens/LoginScreen';
-import Dashboard from './screens/Dashboard'
-// import mainTabScreen from './screens/MainTab';
+// import LoginScreen from './screens/LoginScreen';
+import Dashboard from './screens/Dashboard';
+import MainTabScreen from './screens/MainTab';
+import ProfileScreen from './screens/Profile';
 
 const Drawer = createDrawerNavigator();
 
@@ -18,17 +19,17 @@ function App() {
     <NavigationContainer>
       <Drawer.Navigator screenOptions={{
         headerStyle: {
-          backgroundColor: '#009387'
+          backgroundColor: '#fff'
         },
         headerTintColor:'#121212',
         headerTitleStyle:{
-          fontWeight:'800'
+          fontWeight:'bold'
         }
       }}>
-        <Drawer.Screen name="Login" component={LoginScreen} options={{
-          title:'Welcome to CryptoChart'
+        <Drawer.Screen name="mainTabScreen" component={MainTabScreen} options={{
+          title:'Dashboard'
         }} />
-        <Drawer.Screen name="Dashboard" component={Dashboard} />
+        <Drawer.Screen name="Profile" component={ProfileScreen} />
       </Drawer.Navigator>
     </NavigationContainer>
   );

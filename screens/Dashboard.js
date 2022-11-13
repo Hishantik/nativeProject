@@ -44,16 +44,16 @@ function Dashboard() {
       <View style={styles.gap} />
       <View style={styles.coins}>
         <View style={styles.Coinsec}>
-          <Button title='Bitcoin' color="#D69C2F" style={[styles.title, coin === "bitcoin" ? styles.underline : null]}
+          <Button title='Bitcoin' color="#000" style={[styles.title, coin === "bitcoin" ? styles.underline : null]}
             onPress={() => setCoin("bitcoin")} />
-          <Button title='Ethereum' color="#D69C2F" style={[styles.title, coin === "ethereum" ? styles.underline : null]}
+          <Button title='Ethereum' color="#000" style={[styles.title, coin === "ethereum" ? styles.underline : null]}
             onPress={() => setCoin("ethereum")} />
         </View>
         <View style={styles.line}>
           <VictoryLine
             style={{
               data: {
-                stroke: "#D69C2F",
+                stroke: "#000",
                 strokeWidth: 2
               }
             }}
@@ -65,10 +65,10 @@ function Dashboard() {
       </View>
       <View style={styles.gap} />
       <View style={styles.timeWrapper}>
-        <Button title="1 Day" color="#D69C2F" style={[styles.time, period === 1 ? styles.underline : null]} onPress={() => setPeriod(1)} />
-        <Button title="1 Weelk" color="#D69C2F" style={[styles.time, period === 7 ? styles.underline : null]} onPress={() => setPeriod(7)} />
-        <Button title="1 Month" color="#D69C2F" style={[styles.time, period === 30 ? styles.underline : null]} onPress={() => setPeriod(30)} />
-        <Button title="1 Year" color="#D69C2F" style={[styles.time, period === 365 ? styles.underline : null]} onPress={() => setPeriod(365)} />
+        <Button title="1 Day" color="#000" style={[styles.time, period === 1 ? styles.underline : null]} onPress={() => setPeriod(1)} />
+        <Button title="1 Weelk"  color="#000" style={[styles.time, period === 7 ? styles.underline : null]} onPress={() => setPeriod(7)} />
+        <Button title="1 Month"  color="#000" style={[styles.time, period === 30 ? styles.underline : null]} onPress={() => setPeriod(30)} />
+        <Button title="1 Year"  color="#000" style={[styles.time, period === 365 ? styles.underline : null]} onPress={() => setPeriod(365)} />
       </View>
     </View>
   )
@@ -83,30 +83,30 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#121212"
+    backgroundColor: "#fff"
   },
   space: {
     width: 20
   },
   Coinsec: {
     width: '100%',
-    marginTop: 100,
+    marginTop: 30,
     flexDirection: "row",
     justifyContent: 'space-around',
     alignItems: "center"
   },
-  gap: {
-    margin: 20,
-    height: 20
-  },
+  // gap: {
+  //   margin: 20,
+  //   height: 20
+  // },
   crypto: {
-    position: "absolute",
-    top: 128,
+    // position: "absolute",
+    // top: 128,
     width: 150,
     height: 150
   },
   title: {
-    color: "#fff",
+    color: "#000",
     fontSize: 20,
     fontWeight: "bold",
     margin: 10
@@ -114,8 +114,8 @@ const styles = StyleSheet.create({
   timeWrapper: {
     marginTop: 40,
     width: '100%',
-    position: "absolute",
-    bottom: 150,
+    // position: "absolute",
+    // bottom: 150,
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: 'space-around'
@@ -129,14 +129,15 @@ const styles = StyleSheet.create({
     marginTop: 50
   },
   time: {
-    color: "#fff",
-    margin: 60
+    color: "#000",
+    margin: 60,
+    fontSize: 4,
   },
   header: {
     //borderstyle : "1px solid white", 
-    color: "#D69C2F",
+    color: "#000",
     position: "absolute",
-    top: 50,
+    top: 20,
     fontSize: 30,
     fontWeight: "bold"
   },

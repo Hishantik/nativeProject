@@ -1,17 +1,17 @@
 import React from "react";
-import { StatusBarStyle,Text,View } from "react-native"; 
-// import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { StatusBarStyle, Text, View } from "react-native";
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 // import { createStackNavigator } from '@react-navigation/stack';
-// import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from 'react-native-vector-icons/Ionicons';
 
-// import Dashboard from './Dashboard';
-// import ProfileScreen from './Profile';
-// import AboutScreen from './About';
+import Dashboard from './Dashboard';
+import ProfileScreen from './Profile';
+import Notification from './Notification';
 
 // const HomeStack = createNativeStackNavigator(); 
 // const ProfileStack = createNativeStackNavigator(); 
 // const AboutStack = createNativeStackNavigator(); 
-// const Tab = createMaterialBottomTabNavigator();
+const Tab = createMaterialBottomTabNavigator();
 
 // const HomeScreen=()=>(
 //   <HomeStack.navigator >
@@ -23,48 +23,48 @@ import { StatusBarStyle,Text,View } from "react-native";
 
 
 
-// function mainTabScreen() {
-//   return (
-//     <Tab.Navigator
-//       initialRouteName="Dashboard"
-//       activeColor="#e91e63"
-//       barStyle={{ backgroundColor: 'tomato' }}
-//     >
-//       <Tab.Screen
-//         name="Dashboard"
-//         component={Dashboard}
-//         options={{
-//           tabBarLabel: 'Home',
-//           tabBarIcon: ({ color }) => (
-//             <MaterialCommunityIcons name="home" color={color} size={26} />
-//           ),
-//         }}
-//       />
-//       <Tab.Screen
-//         name="Profile"
-//         component={ProfileScreen}
-//         options={{
-//           tabBarLabel: 'Profile',
-//           tabBarIcon: ({ color }) => (
-//             <MaterialCommunityIcons name="account" color={color} size={26} />
-//           ),
-//         }}
-//       />
-//       <Tab.Screen
-//         name="About"
-//         component={AboutScreen}
-//         options={{
-//           tabBarLabel: 'About',
-//           tabBarIcon: ({ color }) => (
-//             <MaterialCommunityIcons name="bell" color={color} size={26} />
-//           ),
-//         }}
-//       />
-//     </Tab.Navigator>
-//   );
-// }  
+function MainTabScreen() {
+  return (
+    <Tab.Navigator
+      initialRouteName="Dashboard"
+      labeled = 'false'
+      activeColor="red"
+      barStyle={{ backgroundColor: '#fff' }}
+    >
+      <Tab.Screen
+        name="Dashboard"
+        component={Dashboard}
+        options={{
+          tabBarLabel: 'Home',
+          tabBarIcon: ({ color }) => (
+            <Icon name="ios-home" color={color} size={26} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{
+          tabBarLabel: 'Profile',
+          tabBarIcon: ({ color }) => (
+            <Icon name="ios-person" color={color} size={26} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="About"
+        component={Notification}
+        options={{
+          tabBarLabel: 'Notification',
+          tabBarIcon: ({ color }) => (
+            <Icon name="ios-notifications" color={color} size={26} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+}
 
 
 
-
-export default mainTabScreen;
+export default MainTabScreen;

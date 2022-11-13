@@ -1,23 +1,23 @@
 import React from 'react';
-import {Stylesheet,View,Text,Button} from 'react-native';
+import {StyleSheet, View,Text,} from 'react-native';
 
-const AboutScreen =()=>{
+function Notification (){
   return (
     <View style={styles.container}>
       <Text>
-          Hi this is About section
+        Hello welcome to Deku Graph.
       </Text>
     </View>
   );
 }
 
-export default AboutScreen;
+export default Notification;
 
-const styles=Stylesheet.create({
+const styles=StyleSheet.create({
   container:{
     flex:1,
     justifyContent:'center',
-    alignItems:'row',
+    alignItems:'center',
     backgroundColor:'#000',
   }
 })
