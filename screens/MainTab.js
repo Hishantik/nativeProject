@@ -13,8 +13,6 @@ import Notification from './Notification';
 // const AboutStack = createNativeStackNavigator(); 
 const Tab = createMaterialBottomTabNavigator();
 
-// const HomeScreen=()=>(
-//   <HomeStack.navigator >
 
 
 
@@ -26,14 +24,15 @@ const Tab = createMaterialBottomTabNavigator();
 function MainTabScreen() {
   return (
     <Tab.Navigator
+      labeled={false}
       initialRouteName="Dashboard"
-      labeled = 'false'
-      activeColor="red"
-      barStyle={{ backgroundColor: '#fff' }}
+      activeColor="#fff"
+      barStyle={{ backgroundColor: '#28282B' }}
     >
       <Tab.Screen
         name="Dashboard"
         component={Dashboard}
+        labeled={true}
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({ color }) => (
