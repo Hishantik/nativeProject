@@ -16,7 +16,8 @@
     "@react-navigation/native-stack": "^6.9.1",
     "axios": "^1.1.3",
     "expo": "~47.0.3",
-    "expo-splash-screen": "~0.17.4",
+    "expo-font": "^11.0.1",
+    "expo-splash-screen": "~0.17.5",
     "expo-status-bar": "~1.4.2",
     "react": "18.1.0",
     "react-native": "0.70.5",
@@ -30,7 +31,8 @@
     "victory-native": "^36.6.8"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9"
+    "@babel/core": "^7.12.9",
+    "react-native-svg-transformer": "^1.0.0"
   },
   "private": true
 }

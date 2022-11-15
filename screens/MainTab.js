@@ -1,10 +1,10 @@
 import React from "react";
-import { StatusBarStyle, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 // import { createStackNavigator } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import Dashboard from './Dashboard';
+import HomeScreen from './HomeScreen';
 import ProfileScreen from './Profile';
 import Notification from './Notification';
 
@@ -31,8 +31,7 @@ function MainTabScreen() {
     >
       <Tab.Screen
         name="Dashboard"
-        component={Dashboard}
-        labeled={true}
+        component={HomeScreen}
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({ color }) => (
