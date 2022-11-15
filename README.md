@@ -1,14 +1,18 @@
-{
-  "name": "cryptochart",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "start": "expo start --dev-client",
-    "android": "expo run:android",
-    "ios": "expo run:ios",
-    "web": "expo start --web"
-  },
-  "dependencies": {
+# nativeProject
+---
+##This is a personal project  on building  interactive cryptocharting app.....
+
+
+---
+
+
+##Technology Used:
+<p>vanilla js</p><br>
+<p>react native library</p><br>
+<p>expo cli and eas cli</p><br>
+
+###Collection of node-modules and its dependencies
+
     "@react-navigation/bottom-tabs": "^6.4.0",
     "@react-navigation/drawer": "^6.5.0",
     "@react-navigation/material-bottom-tabs": "^6.2.4",
@@ -26,14 +30,14 @@
     "react-native-reanimated": "~2.12.0",
     "react-native-safe-area-context": "4.4.1",
     "react-native-screens": "~3.18.0",
-    "react-native-snap-carousel": "^3.9.1",
     "react-native-svg": "13.4.0",
     "react-native-vector-icons": "^9.2.0",
     "victory-native": "^36.6.8"
-  },
-  "devDependencies": {
     "@babel/core": "^7.12.9",
     "react-native-svg-transformer": "^1.0.0"
-  },
-  "private": true
-}
+ 
+
+
+
+
+
