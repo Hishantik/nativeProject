@@ -46,7 +46,6 @@ function HomeScreen() {
     }}>
       <ScrollView style={{
         marginTop: 50,
-        padding: 20,
       }}>
         <View style={{
           flexDirection: 'row',
@@ -63,20 +62,22 @@ function HomeScreen() {
             imageStyle={{ borderRadius: 25 }} />
         </View>
         <View style={{
+          width:'90%',
           borderWidth: 3,
           flexDirection: 'row',
           borderRadius: 50,
           borderColor: '#C6C6C6',
           marginTop: 20,
+          marginLeft:20,
           paddingHorizontal: 10,
           paddingVertical: 8,
         }}>
           <Icon name="search" size={22} color='#C6C6C6' style={{
             marginRight: 15,
           }} />
-          <TextInput placeholder='search' />
+          <TextInput placeholder='search' style={{flex:1}} />
         </View>
-        <View style={{ marginTop: 16, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingVertical: 10, paddingHorizontal: 8, }}>
+        <View style={{ margin: 16, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingVertical: 10, paddingHorizontal: 8, }}>
           <Text style={{
             fontSize: 20,
           }}>Available Markets</Text>

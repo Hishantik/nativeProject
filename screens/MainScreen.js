@@ -3,6 +3,7 @@ import {
   SafeAreaView,
   View,
   Text,
+  Button,
   TouchableOpacity,
 } from 'react-native';
 import BitCoinImg from '../assets/BitCoin.svg';
@@ -38,7 +39,7 @@ const Main = ({ navigation }) => {
           color: '#330033'
         }}>CRYPTOCHART</Text>
       </View>
-      <BitCoinImg width={300} height={300} />
+      <BitCoinImg width={300} height={300} /> 
       <TouchableOpacity
         onPress={() => navigation.push('HomeScreen')}
         style={{
@@ -62,6 +63,7 @@ const Main = ({ navigation }) => {
         </Text>
         <MaterialIcons name='arrow-forward-ios' size={22} color='#fff' />
       </TouchableOpacity>
+      <Button title="click me" onPress={()=>navigation.navigate('LoginScreen')}/>
     </SafeAreaView >
   );
 }
