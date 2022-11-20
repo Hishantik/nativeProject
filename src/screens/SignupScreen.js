@@ -1,19 +1,25 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { View, Text, SafeAreaView, TouchableOpacity, ScrollView } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
-import SignupImg from '../assets/Svg/bg9-2.svg';
+import SignupImg from '../../assets/Svg/bg9-2.svg';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import Facebook from '../assets/Socials/icons8-facebook.svg';
-import Google from '../assets/Socials/icons8-google.svg';
-import Twitter from '../assets/Socials/icons8-twitter.svg';
+import Facebook from '../../assets/Socials/icons8-facebook.svg';
+import Google from '../../assets/Socials/icons8-google.svg';
+import Twitter from '../../assets/Socials/icons8-twitter.svg';
+import { AuthContext } from '../Context/AuthContext';
 
 
 const SignUp = ({ navigation }) => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [dobLabel, setDobLabel] = useState('Date of birth');
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  // const [confirmPassword,setConfirmPassword] = useState(null);
+  const { signup } = useContext(AuthContext);
 
   const showDatePicker = () => {
     setDatePickerVisibility(true);
@@ -63,19 +69,19 @@ const SignUp = ({ navigation }) => {
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center', borderWidth: 1, borderRadius: 50, padding: 10, marginVertical: 10 }}>
           <Entypo name='email' size={14} style={{ paddingHorizontal: 10 }} color='#666' />
-          <TextInput placeholder="email Id" style={{ flex: 1 }} keyboardType='email-address' />
+          <TextInput placeholder="email Id" style={{ flex: 1 }} keyboardType='email-address' onChangeText={(email)=>setEmail(email)}/>
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center', borderWidth: 1, borderRadius: 50, padding: 10, marginVertical: 10 }}>
           <Ionicons name='ios-lock-closed-outline' size={14} style={{ paddingHorizontal: 10 }} color='#666' />
-          <TextInput placeholder="password" style={{ flex: 1 }} secureTextEntry={true} />
+          <TextInput placeholder="password" style={{ flex: 1 }} secureTextEntry={true} onChangeText={(password)=>setPassword(password)} />
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center', borderWidth: 1, borderRadius: 50, padding: 10, marginVertical: 10 }}>
           <Ionicons name='ios-lock-closed-outline' size={14} style={{ paddingHorizontal: 10 }} color='#666' />
-          <TextInput placeholder=" Confirm password" style={{ flex: 1 }} secureTextEntry={true} />
+          <TextInput placeholder=" Confirm password" style={{ flex: 1 }} secureTextEntry={true} onChangeText={(password)=>setPassword(password)} />
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center', borderWidth: 1, borderRadius: 50, padding: 10, marginVertical: 10 }}>
           <FontAwesome name='birthday-cake' size={14} style={{ paddingHorizontal: 10 }} color='#666' />
-          <TouchableOpacity onPress={showDatePicker} style={{flex:1}}>
+          <TouchableOpacity onPress={showDatePicker} style={{ flex: 1 }}>
             <Text style={{ color: '#666' }}>{dobLabel}</Text>
           </TouchableOpacity>
         </View>
@@ -86,8 +92,8 @@ const SignUp = ({ navigation }) => {
           onCancel={hideDatePicker}
         />
         <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'center' }}>
-          <TouchableOpacity style={{ elevation:10,marginTop: 20, borderRadius: 50, backgroundColor: '#6633FF', paddingVertical: 10, width: '50%' }}>
-            <Text style={{ textAlign: 'center', color: '#fff', }}>Sign up</Text>
+          <TouchableOpacity style={{ elevation: 10, marginTop: 20, borderRadius: 50, backgroundColor: '#6633FF', paddingVertical: 10, width: '50%' }}>
+            <Text style={{ textAlign: 'center', color: '#fff', }} onPress={() => signup(email, password)}>Sign up</Text>
           </TouchableOpacity>
         </View>
         <View style={{

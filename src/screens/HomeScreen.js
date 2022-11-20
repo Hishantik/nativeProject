@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image, SafeAreaView, ImageBackground } from 'react-native';
+import React, { useEffect,useContext, useState } from 'react';
+import { Button, StyleSheet, Text, View, TouchableOpacity, Image, SafeAreaView, ImageBackground } from 'react-native';
 import axios from "axios";
 import { VictoryLine } from 'victory-native';
 import { ScrollView, TextInput } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { AuthContext } from '../Context/AuthContext';
 
 
 
@@ -13,6 +14,7 @@ function HomeScreen() {
   const [data, setData] = useState()
   const [coin, setCoin] = useState("bitcoin")
   const [period, setPeriod] = useState(30)
+  const { logout } = useContext(AuthContext);
 
   useEffect(
     () => {
@@ -34,7 +36,7 @@ function HomeScreen() {
       })
       setData(formatData)
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 
@@ -62,20 +64,20 @@ function HomeScreen() {
             imageStyle={{ borderRadius: 25 }} />
         </View>
         <View style={{
-          width:'90%',
+          width: '90%',
           borderWidth: 3,
           flexDirection: 'row',
           borderRadius: 50,
           borderColor: '#C6C6C6',
           marginTop: 20,
-          marginLeft:20,
+          marginLeft: 20,
           paddingHorizontal: 10,
           paddingVertical: 8,
         }}>
           <Icon name="search" size={22} color='#C6C6C6' style={{
             marginRight: 15,
           }} />
-          <TextInput placeholder='search' style={{flex:1}} />
+          <TextInput placeholder='search' style={{ flex: 1 }} />
         </View>
         <View style={{ margin: 16, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingVertical: 10, paddingHorizontal: 8, }}>
           <Text style={{
@@ -87,10 +89,10 @@ function HomeScreen() {
         </View>
         <View style={styles.Coinsec}>
           <TouchableOpacity style={[styles.button, coin === "bitcoin" ? styles.underline : null]} onPress={() => setCoin("bitcoin")}>
-            <Image style={styles.coinBtn} source={require("../assets/Bitcoin.png")} />
+            <Image style={styles.coinBtn} source={require("../../assets/Bitcoin.png")} />
           </TouchableOpacity>
           <TouchableOpacity style={[styles.button, coin === "ethereum" ? styles.underline : null]} onPress={() => setCoin("ethereum")}>
-            <Image style={styles.coinBtn} source={require("../assets/Ethereum.png")} />
+            <Image style={styles.coinBtn} source={require("../../assets/Ethereum.png")} />
           </TouchableOpacity>
         </View>
         <View style={styles.line}>
@@ -112,6 +114,7 @@ function HomeScreen() {
           <TouchableOpacity color="#000" style={[styles.time, period === 30 ? styles.underline : null]} onPress={() => setPeriod(30)} ><Text>1 M</Text></TouchableOpacity>
           <TouchableOpacity color="#000" style={[styles.time, period === 365 ? styles.underline : null]} onPress={() => setPeriod(365)} ><Text>1 Y</Text></TouchableOpacity>
         </View>
+        <Button title="Sign out" size={22} onPress={()=>{logout()}}/>
       </ScrollView>
     </SafeAreaView >
   );
@@ -153,8 +156,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between"
   },
   line: {
-    justifyContent:'center',
-    marginTop:20,
+    justifyContent: 'center',
+    marginTop: 20,
   },
   time: {
     color: "#fff",

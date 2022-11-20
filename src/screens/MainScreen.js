@@ -3,10 +3,9 @@ import {
   SafeAreaView,
   View,
   Text,
-  Button,
   TouchableOpacity,
 } from 'react-native';
-import BitCoinImg from '../assets/BitCoin.svg';
+import BitCoinImg from '../../assets/BitCoin.svg';
 import { useFonts } from 'expo-font';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
@@ -14,8 +13,8 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
 const Main = ({ navigation }) => {
   const [loaded] = useFonts({
-    Roboto: require('../assets/fonts/Roboto-Black.ttf'),
-    ZillaSlab: require('../assets/fonts/ZillaSlab-Regular.ttf')
+    Roboto: require('../../assets/fonts/Roboto-Black.ttf'),
+    ZillaSlab: require('../../assets/fonts/ZillaSlab-Regular.ttf')
   });
 
   if (!loaded) {
@@ -41,7 +40,7 @@ const Main = ({ navigation }) => {
       </View>
       <BitCoinImg width={300} height={300} /> 
       <TouchableOpacity
-        onPress={() => navigation.push('HomeScreen')}
+        onPress={() => navigation.push('LoginScreen')}
         style={{
           flexDirection: 'row',
           justifyContent: 'space-between',
@@ -63,7 +62,6 @@ const Main = ({ navigation }) => {
         </Text>
         <MaterialIcons name='arrow-forward-ios' size={22} color='#fff' />
       </TouchableOpacity>
-      <Button title="click me" onPress={()=>navigation.navigate('LoginScreen')}/>
     </SafeAreaView >
   );
 }
