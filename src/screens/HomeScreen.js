@@ -1,4 +1,4 @@
-import React, { useEffect,useContext, useState } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import { Button, StyleSheet, Text, View, TouchableOpacity, Image, SafeAreaView, ImageBackground } from 'react-native';
 import axios from "axios";
 import { VictoryLine } from 'victory-native';
@@ -109,12 +109,25 @@ function HomeScreen() {
           />
         </View>
         <View style={styles.timeWrapper}>
-          <TouchableOpacity color="#000" style={[styles.time, period === 1 ? styles.underline : null]} onPress={() => setPeriod(1)} ><Text>1 D</Text></TouchableOpacity>
-          <TouchableOpacity color="#000" style={[styles.time, period === 7 ? styles.underline : null]} onPress={() => setPeriod(7)} ><Text>1 W</Text></TouchableOpacity>
-          <TouchableOpacity color="#000" style={[styles.time, period === 30 ? styles.underline : null]} onPress={() => setPeriod(30)} ><Text>1 M</Text></TouchableOpacity>
-          <TouchableOpacity color="#000" style={[styles.time, period === 365 ? styles.underline : null]} onPress={() => setPeriod(365)} ><Text>1 Y</Text></TouchableOpacity>
+          <TouchableOpacity style={[styles.time, period === 1 ? styles.underline : null]} onPress={() => setPeriod(1)} ><Text styles={{ color: '#fff' }}>1 D</Text></TouchableOpacity>
+          <TouchableOpacity style={[styles.time, period === 7 ? styles.underline : null]} onPress={() => setPeriod(7)} ><Text styles={styles.textTime}>1 W</Text></TouchableOpacity>
+          <TouchableOpacity style={[styles.time, period === 30 ? styles.underline : null]} onPress={() => setPeriod(30)} ><Text styles={styles.textTime}>1 M</Text></TouchableOpacity>
+          <TouchableOpacity style={[styles.time, period === 365 ? styles.underline : null]} onPress={() => setPeriod(365)} ><Text styles={styles.textTime}>1 Y</Text></TouchableOpacity>
         </View>
-        <Button title="Sign out" size={22} onPress={()=>{logout()}}/>
+        <TouchableOpacity style={{
+          backgroundColor: '#6633FF',
+          borderRadius: 50,
+          alignSelf: "center",
+          marginTop: 20,
+          width: '50%',
+          paddingVertical: 10,
+        }}
+          onPress={() => logout()}
+        >
+          <Text style={{ textAlign: 'center', color: '#fff' }}>logout</Text>
+        </TouchableOpacity>
+
+        {/* <Button title="Sign out" size={22} onPress={()=>{logout()}}/> */}
       </ScrollView>
     </SafeAreaView >
   );
@@ -132,6 +145,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     alignItems: "center",
   },
+  // textTime:{
+  //   color:"#fff",
+  // },
   crypto: {
     width: 150,
     height: 150,
@@ -160,9 +176,9 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   time: {
-    color: "#fff",
     borderWidth: 2,
-    borderColor: 'red',
+    backgroundColor: "#6633ff",
+    borderColor: '#6633ff',
     padding: 10,
     elevation: 20,
     fontWeight: "bold",

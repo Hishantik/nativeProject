@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
-import { Text, View, SafeAreaView, TouchableOpacity, } from 'react-native';
+import { Text, View, SafeAreaView, TouchableOpacity, StyleSheet } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
+import { firebase } from '../../config.js'
 import LoginImg from '../../assets/Svg/bg9-1.svg';
 import Facebook from '../../assets/Socials/icons8-facebook.svg';
 import Google from '../../assets/Socials/icons8-google.svg';
@@ -13,6 +14,44 @@ const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { login } = useContext(AuthContext);
+  const [show, setShow] = React.useState(false);
+  const [visible, setVisible] = React.useState(true);
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+
+  //Email and Password validation
+  const validate = () => {
+    if (!email.includes('@')) {
+      setEmailError('Invalid Email ');
+    }
+    else if (password.length < 8) {
+      setPasswordError('Password field must contain atleast 8 characters with special symbols');
+    }
+    else if (email.length === 0) {
+      setEmailError('Email required');
+    }
+    else if (email.indexOf(' ') >= 0) {
+      setEmailError('Email must not contain spaces or empty characters')
+    }
+    else if (password.indexOf(' ') >= 0) {
+      setPasswordError('Password field must not contain empty characters or spaces')
+    }
+    else {
+      setEmailError('');
+      setPasswordError('');
+    }
+  }
+
+
+
+  const forgetPassword = () => {
+    firebase.auth().sendPasswordResetEmail(email)
+      .then(() => {
+        alert("Password reset mail sent")
+      }).catch(() => {
+        alert("Please provide Email on the above email field")
+      })
+  }
 
   return (
     <SafeAreaView style={{
@@ -42,6 +81,7 @@ const LoginScreen = ({ navigation }) => {
           <Entypo name="email" size={14} style={{ paddingHorizontal: 10, }} color='#666' />
           <TextInput placeholder='email Id' style={{ fontSize: 15, marginHorizontal: 5, flex: 1, }} keyboardType='email-address' value={email} onChangeText={(email) => setEmail(email)} />
         </View>
+        <Text style={styles.red} > {emailError}</Text>
         <View style={{
           flexDirection: 'row',
           borderWidth: 1,
@@ -51,11 +91,25 @@ const LoginScreen = ({ navigation }) => {
           alignItems: 'center',
         }}>
           <Ionicons name="ios-lock-closed-outline" size={14} style={{ paddingHorizontal: 10, }} color='#666' />
-          <TextInput placeholder='password' style={{ fontSize: 15, marginHorizontal: 5, flex: 1, }} secureTextEntry={true} value={password} onChangeText={(password) => setPassword(password)} />
-          <TouchableOpacity>
-            <Text style={{ fontWeight: '700', color: '#6633FF' }}>Forgot password?</Text>
+          <TextInput placeholder='password' style={{ fontSize: 15, marginHorizontal: 5, flex: 1, }} secureTextEntry={visible} value={password} onChangeText={(password) => setPassword(password)} />
+          <TouchableOpacity onPress={() => {
+            setVisible(!visible)
+            setShow(!show)
+          }}>
+            <Ionicons
+              name={show === false ? "md-eye" : "md-eye-off"}
+              size={18}
+              style={{ marginRight: 10 }}
+              color="#666"
+            />
           </TouchableOpacity>
         </View>
+        <Text style={styles.red}>{passwordError}</Text>
+        <TouchableOpacity style={{ marginTop: 15 }} onPress={() => {
+          forgetPassword()
+        }}>
+          <Text style={{ fontWeight: '700', color: '#6633FF', textAlign: "center" }}>Forgot password?</Text>
+        </TouchableOpacity>
         <View style={{ flexDirection: 'column', alignItems: 'center', }}>
           <TouchableOpacity style={{
             elevation: 10,
@@ -66,6 +120,7 @@ const LoginScreen = ({ navigation }) => {
             paddingVertical: 10,
           }}
             onPress={() => login(email, password)}
+            onPressIn={validate}
           >
             <Text style={{ textAlign: 'center', color: '#fff' }}>Login</Text>
           </TouchableOpacity>
@@ -102,9 +157,17 @@ const LoginScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       </View>
-    </SafeAreaView>
+    </SafeAreaView >
   );
 }
 
 export default LoginScreen;
 
+
+
+const styles = StyleSheet.create({
+  red: {
+    color: "red",
+    fontSize: 10,
+  },
+})

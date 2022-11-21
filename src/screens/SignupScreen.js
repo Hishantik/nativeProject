@@ -15,10 +15,17 @@ import { AuthContext } from '../Context/AuthContext';
 const SignUp = ({ navigation }) => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [dobLabel, setDobLabel] = useState('Date of birth');
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const [confirmPassword,setConfirmPassword] = useState(null);
+  const [userName, setUserName] = useState('');
+  const [show, setShow] = React.useState(false);
+  const [visible, setVisible] = React.useState(true);
+  const [shown, setShown] = React.useState(false);
+  const [showable, setShowable] = React.useState(true);
+ 
+
+
+  // const [confirmPassword, setConfirmPassword] = useState('');
   const { signup } = useContext(AuthContext);
 
   const showDatePicker = () => {
@@ -65,24 +72,47 @@ const SignUp = ({ navigation }) => {
         <Text style={{ textAlign: 'center', color: '#666', marginVertical: 10 }}>or Sign up with email id</Text>
         <View style={{ flexDirection: 'row', alignItems: 'center', borderWidth: 1, borderRadius: 50, padding: 10, marginVertical: 10 }}>
           <Entypo name='user' size={14} style={{ paddingHorizontal: 10 }} color='#666' />
-          <TextInput placeholder="username" style={{ flex: 1 }} />
+          <TextInput placeholder="username" style={{ flex: 1 }} onChangeText={(userName) => setUserName(userName)} />
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center', borderWidth: 1, borderRadius: 50, padding: 10, marginVertical: 10 }}>
           <Entypo name='email' size={14} style={{ paddingHorizontal: 10 }} color='#666' />
-          <TextInput placeholder="email Id" style={{ flex: 1 }} keyboardType='email-address' onChangeText={(email)=>setEmail(email)}/>
+          <TextInput placeholder="email Id" style={{ flex: 1 }} keyboardType='email-address' onChangeText={(email) => setEmail(email)} />
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center', borderWidth: 1, borderRadius: 50, padding: 10, marginVertical: 10 }}>
           <Ionicons name='ios-lock-closed-outline' size={14} style={{ paddingHorizontal: 10 }} color='#666' />
-          <TextInput placeholder="password" style={{ flex: 1 }} secureTextEntry={true} onChangeText={(password)=>setPassword(password)} />
+          <TextInput placeholder="password" style={{ flex: 1 }} secureTextEntry={visible} onChangeText={(password) => setPassword(password)} />
+          <TouchableOpacity onPress={() => {
+            setVisible(!visible)
+            setShow(!show)
+          }}>
+            <Ionicons
+              name={show === false ? "md-eye" : "md-eye-off"}
+              size={18}
+              style={{ marginRight: 10 }}
+              color="#666"
+            />
+          </TouchableOpacity>
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center', borderWidth: 1, borderRadius: 50, padding: 10, marginVertical: 10 }}>
           <Ionicons name='ios-lock-closed-outline' size={14} style={{ paddingHorizontal: 10 }} color='#666' />
-          <TextInput placeholder=" Confirm password" style={{ flex: 1 }} secureTextEntry={true} onChangeText={(password)=>setPassword(password)} />
+          <TextInput placeholder=" Confirm password" style={{ flex: 1 }} secureTextEntry={showable} onChangeText={(password) => setPassword(password)} />
+          <TouchableOpacity onPress={() => {
+            setShowable(!showable)
+            setShown(!shown)
+          }}>
+            <Ionicons
+              name={shown === false ? "md-eye" : "md-eye-off"}
+              size={18}
+              style={{ marginRight: 10 }}
+              color="#666"
+            />
+          </TouchableOpacity>
+
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center', borderWidth: 1, borderRadius: 50, padding: 10, marginVertical: 10 }}>
           <FontAwesome name='birthday-cake' size={14} style={{ paddingHorizontal: 10 }} color='#666' />
           <TouchableOpacity onPress={showDatePicker} style={{ flex: 1 }}>
-            <Text style={{ color: '#666' }}>{dobLabel}</Text>
+            <Text style={{ color: '#666' }} onChange={(dobLabel) => setDobLabel(dobLabel)}>{dobLabel}</Text>
           </TouchableOpacity>
         </View>
         <DateTimePickerModal
@@ -93,7 +123,7 @@ const SignUp = ({ navigation }) => {
         />
         <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'center' }}>
           <TouchableOpacity style={{ elevation: 10, marginTop: 20, borderRadius: 50, backgroundColor: '#6633FF', paddingVertical: 10, width: '50%' }}>
-            <Text style={{ textAlign: 'center', color: '#fff', }} onPress={() => signup(email, password)}>Sign up</Text>
+            <Text style={{ textAlign: 'center', color: '#fff', }} onPress={() => signup(email, password, userName, dobLabel)}>Sign up</Text>
           </TouchableOpacity>
         </View>
         <View style={{
@@ -112,3 +142,13 @@ const SignUp = ({ navigation }) => {
 }
 
 export default SignUp;
+
+
+
+
+// const styles=StyleSheet.create({
+//   red:{
+//     color:red,
+//     fontSize:4,
+//   }
+// })

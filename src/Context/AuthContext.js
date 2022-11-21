@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-import {firebase} from '../../config.js';
+import { firebase } from '../../config.js';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const AuthContext = createContext();
@@ -15,16 +15,43 @@ export const AuthProvider = ({ children }) => {
         try {
           await firebase.auth().signInWithEmailAndPassword(email, password);
         } catch (err) {
-          console.log(err);
+          alert("Please enter valid Email and password");
         }
       },
-      signup: async (email, password) => {
-        try {
-          await firebase.auth().createUserWithEmailAndPassword(email, password);
-        } catch (err) {
-          console.log(err);
-        }
+
+
+      signup: async (email, password, userName, dobLabel) => {
+        await firebase.auth().createUserWithEmailAndPassword(email, password)
+          .then(() => {
+            firebase.auth().currentUser.sendEmailVerification({
+              handleCodeInApp: true,
+              url: 'https://crypto-46376.web.app',
+            })
+              .then(() => {
+                alert('Verification email sent please check it in your gmail spam section')
+              }).catch((err) => {
+                alert(err)
+              })
+              .then(() => {
+                firebase.firestore().collection('users')
+                  .doc(firebase.auth().currentUser.uid)
+                  .set({
+                    userName,
+                    email,
+                    dobLabel,
+                  })
+              })
+              .catch((err) => {
+                console.log(err)
+              })
+          })
+          .catch((err) => {
+            console.log(err)
+          })
       },
+
+
+
       logout: async () => {
         try {
           await firebase.auth().signOut();
@@ -34,7 +61,7 @@ export const AuthProvider = ({ children }) => {
       }
     }}>
       {children}
-    </AuthContext.Provider>
+    </AuthContext.Provider >
 
   );
 }

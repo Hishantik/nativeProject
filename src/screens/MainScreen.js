@@ -36,7 +36,7 @@ const Main = ({ navigation }) => {
           fontSize: 30,
           fontWeight: 'bold',
           color: '#330033'
-        }}>CRYPTOCHART</Text>
+        }}>CRYPTO TRACKER</Text>
       </View>
       <BitCoinImg width={300} height={300} /> 
       <TouchableOpacity
