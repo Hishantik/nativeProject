@@ -8,39 +8,64 @@ import Google from '../../assets/Socials/icons8-google.svg';
 import Twitter from '../../assets/Socials/icons8-twitter.svg';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { AuthContext } from '../Context/AuthContext';
+import { StackActions } from '@react-navigation/native';
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { login } = useContext(AuthContext);
   const [show, setShow] = React.useState(false);
   const [visible, setVisible] = React.useState(true);
-  const [emailError, setEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
+  // const [emailError, setEmailError] = useState('');
+  // const [passwordError, setPasswordError] = useState('');
+  const [message, setMessage] = useState('');
 
-  //Email and Password validation
-  const validate = () => {
-    if (!email.includes('@')) {
-      setEmailError('Invalid Email ');
-    }
-    else if (password.length < 8) {
-      setPasswordError('Password field must contain atleast 8 characters with special symbols');
-    }
-    else if (email.length === 0) {
-      setEmailError('Email required');
-    }
-    else if (email.indexOf(' ') >= 0) {
-      setEmailError('Email must not contain spaces or empty characters')
-    }
-    else if (password.indexOf(' ') >= 0) {
-      setPasswordError('Password field must not contain empty characters or spaces')
-    }
-    else {
-      setEmailError('');
-      setPasswordError('');
+
+  const handleLogin = async () => {
+    try {
+      if (email.length > 0 && password.length > 0) {
+        const user = await firebase.auth().signInWithEmailAndPassword(email, password);
+        console.log(user);
+        setMessage('');
+        if (user.user.emailVerified) {
+          alert('You are verified')
+          navigation.dispatch(StackActions.replace('HomeScreen'));
+        } else {
+          alert('Please Verify your email to Login');
+        }
+      } else {
+        alert("Please enter Login/Password");
+        await firebase.auth().currentUser.sendEmailVerification();
+        await firebase.auth().signOut();  
+      }
+    } catch (err) {
+      console.log(err);
+      setMessage(err.message);
     }
   }
+
+
+  //Email and Password validation
+  // const validate = () => {
+  //   if (!email.includes('@')) {
+  //     setEmailError('Invalid Email ');
+  //   }
+  //   else if (password.length < 8) {
+  //     setPasswordError('Password field must contain atleast 8 characters with special symbols');
+  //   }
+  //   else if (email.length === 0) {
+  //     setEmailError('Email required');
+  //   }
+  //   else if (email.indexOf(' ') >= 0) {
+  //     setEmailError('Email must not contain spaces or empty characters')
+  //   }
+  //   else if (password.indexOf(' ') >= 0) {
+  //     setPasswordError('Password field must not contain empty characters or spaces')
+  //   }
+  //   else {
+  //     setEmailError('');
+  //     setPasswordError('');
+  //   }
+  // }
 
 
 
@@ -81,7 +106,6 @@ const LoginScreen = ({ navigation }) => {
           <Entypo name="email" size={14} style={{ paddingHorizontal: 10, }} color='#666' />
           <TextInput placeholder='email Id' style={{ fontSize: 15, marginHorizontal: 5, flex: 1, }} keyboardType='email-address' value={email} onChangeText={(email) => setEmail(email)} />
         </View>
-        <Text style={styles.red} > {emailError}</Text>
         <View style={{
           flexDirection: 'row',
           borderWidth: 1,
@@ -104,7 +128,7 @@ const LoginScreen = ({ navigation }) => {
             />
           </TouchableOpacity>
         </View>
-        <Text style={styles.red}>{passwordError}</Text>
+        <Text style={styles.red}>{message}</Text>
         <TouchableOpacity style={{ marginTop: 15 }} onPress={() => {
           forgetPassword()
         }}>
@@ -119,8 +143,8 @@ const LoginScreen = ({ navigation }) => {
             width: '50%',
             paddingVertical: 10,
           }}
-            onPress={() => login(email, password)}
-            onPressIn={validate}
+            onPress={() => handleLogin()}
+          // onPressIn={validate}
           >
             <Text style={{ textAlign: 'center', color: '#fff' }}>Login</Text>
           </TouchableOpacity>

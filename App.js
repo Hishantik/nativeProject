@@ -1,6 +1,6 @@
 import React from 'react';
-import { AuthProvider } from './src/Context/AuthContext';
-import AppNav from './src/navigation/AppNav';
+import { NavigationContainer } from '@react-navigation/native';
+import AuthStack from './src/navigation/AuthStack';
 // import { createDrawerNavigator } from '@react-navigation/drawer';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -14,9 +14,9 @@ import AppNav from './src/navigation/AppNav';
 
 const App = () => {
   return (
-    <AuthProvider>
-      <AppNav />
-    </AuthProvider>
+    <NavigationContainer>
+      <AuthStack />
+    </NavigationContainer>
   );
 }
 

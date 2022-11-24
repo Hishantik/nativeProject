@@ -1,20 +1,21 @@
 import React, { useEffect, useContext, useState } from 'react';
-import { Button, StyleSheet, Text, View, TouchableOpacity, Image, SafeAreaView, ImageBackground } from 'react-native';
+import { firebase } from '../../config.js';
+import { StyleSheet, Text, View, TouchableOpacity, Image, SafeAreaView, ImageBackground } from 'react-native';
 import axios from "axios";
 import { VictoryLine } from 'victory-native';
 import { ScrollView, TextInput } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { AuthContext } from '../Context/AuthContext';
+import { StackActions } from '@react-navigation/native';
 
 
 
 
 
-function HomeScreen() {
+function HomeScreen({ navigation }) {
   const [data, setData] = useState()
   const [coin, setCoin] = useState("bitcoin")
   const [period, setPeriod] = useState(30)
-  const { logout } = useContext(AuthContext);
+  const [user, setUser] = useState('');
 
   useEffect(
     () => {
@@ -22,6 +23,20 @@ function HomeScreen() {
     },
     [coin, period]
   )
+
+
+  useEffect(() => {
+    firebase.firestore().collection('users')
+      .doc(firebase.auth().currentUser.uid).get()
+      .then((snapshot) => {
+        if (snapshot.exits) {
+          setUser(snapshot.data())
+        }
+        else {
+          console.log("User doesn't exists");
+        }
+      })
+  }, [])
 
   async function getData() {
     try {
@@ -50,6 +65,7 @@ function HomeScreen() {
         marginTop: 50,
       }}>
         <View style={{
+          flex: 1,
           flexDirection: 'row',
           justifyContent: 'space-around',
           alignItems: 'center',
@@ -57,7 +73,7 @@ function HomeScreen() {
           <Text style={{
             fontSize: 20,
             fontWeight: 'bold'
-          }}>Hi, Hishantik</Text>
+          }}>Hi, {user.userName}</Text>
           <ImageBackground
             source={{ uri: 'https://user-images.githubusercontent.com/60609786/200855727-22e055e7-ca4c-453c-b973-c7bdd1c56d57.png' }}
             style={{ width: 35, height: 35, }}
@@ -122,7 +138,10 @@ function HomeScreen() {
           width: '50%',
           paddingVertical: 10,
         }}
-          onPress={() => logout()}
+          onPress={async () => {
+            await firebase.auth().signOut();
+            navigation.dispatch(StackActions.replace('LoginScreen'));
+          }}
         >
           <Text style={{ textAlign: 'center', color: '#fff' }}>logout</Text>
         </TouchableOpacity>
@@ -199,5 +218,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
   }
 });
+
+
+
+
 
 

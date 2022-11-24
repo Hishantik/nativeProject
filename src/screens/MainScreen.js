@@ -8,6 +8,7 @@ import {
 import BitCoinImg from '../../assets/BitCoin.svg';
 import { useFonts } from 'expo-font';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import { StackActions } from '@react-navigation/native';
 
 
 
@@ -38,9 +39,9 @@ const Main = ({ navigation }) => {
           color: '#330033'
         }}>CRYPTO TRACKER</Text>
       </View>
-      <BitCoinImg width={300} height={300} /> 
+      <BitCoinImg width={300} height={300} />
       <TouchableOpacity
-        onPress={() => navigation.push('LoginScreen')}
+        onPress={() => navigation.dispatch(StackActions.replace('LoginScreen'))}
         style={{
           flexDirection: 'row',
           justifyContent: 'space-between',

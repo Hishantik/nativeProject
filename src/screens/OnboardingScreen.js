@@ -3,6 +3,7 @@ import { Image, TouchableOpacity, View } from 'react-native';
 import Onboarding from 'react-native-onboarding-swiper';
 import Octicons from 'react-native-vector-icons/Octicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { StackActions } from '@react-navigation/native';
 
 const Skip = ({ ...props }) => (
   <TouchableOpacity style={{
@@ -63,8 +64,8 @@ const Onboard = ({ navigation }) => {
       NextButtonComponent={Next}
       DoneButtonComponent={Done}
       DotComponent={Dot}
-      onSkip={() => navigation.replace("Main")}
-      onDone={() => navigation.navigate("Main")}
+      onSkip={() => navigation.dispatch(StackActions.replace("Main"))}
+      onDone={() => navigation.dispatch(StackActions.replace("Main"))}
       pages={[
         {
           backgroundColor: '#fff',
