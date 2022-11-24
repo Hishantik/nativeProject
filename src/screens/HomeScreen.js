@@ -29,7 +29,7 @@ function HomeScreen({ navigation }) {
     firebase.firestore().collection('users')
       .doc(firebase.auth().currentUser.uid).get()
       .then((snapshot) => {
-        if (snapshot.exits) {
+        if (snapshot.exists) {
           setUser(snapshot.data())
         }
         else {

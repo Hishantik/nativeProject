@@ -36,9 +36,8 @@ const SignUp = ({ navigation }) => {
           email: email,
           dobLabel: dobLabel,
         }
-        await firebase.firestore().collection("users").doc(
-          user.user.id
-        ).set(userData);
+        await firebase.firestore().collection("users")
+          .doc(firebase.auth().currentUser.uid).set(userData);
         await firebase.auth().currentUser.sendEmailVerification();
         await firebase.auth().signOut();
         alert('Verification mail sent');
