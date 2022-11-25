@@ -154,7 +154,7 @@ const SignUp = ({ navigation }) => {
             elevation: 10,
             marginTop: 10,
             borderRadius: 50,
-            backgroundColor: '#6633FF',
+            backgroundColor: '#6c63FF',
             paddingVertical: 10,
             width: '50%'
           }}>
@@ -174,7 +174,7 @@ const SignUp = ({ navigation }) => {
         }}>
           <Text style={{ fontWeight: '200', color: '#666' }}>Already a user?</Text>
           <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Text style={{ color: '#6633FF', fontWeight: 'bold', marginHorizontal: 10, textAlign: 'center' }}>Sign in</Text>
+            <Text style={{ color: '#6363FF', fontWeight: 'bold', marginHorizontal: 10, textAlign: 'center' }}>Sign in</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>

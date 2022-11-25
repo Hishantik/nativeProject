@@ -45,7 +45,7 @@ const Main = ({ navigation }) => {
         style={{
           flexDirection: 'row',
           justifyContent: 'space-between',
-          backgroundColor: '#6633FF',
+          backgroundColor: '#6c63FF',
           elevation: 20,
           padding: 20,
           width: '90%',

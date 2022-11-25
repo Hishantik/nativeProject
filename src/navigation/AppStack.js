@@ -1,17 +1,20 @@
 import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 //importing screens
-import HomeScreen from '../screens/HomeScreen';
+import MainTabScreen from '../screens/MainTab';
+import Notification from '../screens/Notification';
+import CustomDrawer from '../../Components/CustomDrawer';
 
 const Drawer = createDrawerNavigator();
 
 const AppStack = () => {
 
   return (
-    <Drawer.Navigator screenOptions={{headerShown:false}}>
-      <Drawer.Screen component={HomeScreen} name="HomeScreen" />
+    <Drawer.Navigator drawerContent={props => <CustomDrawer{...props} />} screenOptions={{ headerShown: false }}>
+      <Drawer.Screen component={MainTabScreen} name="DashBoard" />
+      <Drawer.Screen component={Notification} name="Nofifications" />
     </Drawer.Navigator>
   );
-};
+}
 
 export default AppStack;

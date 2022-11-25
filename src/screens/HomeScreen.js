@@ -100,7 +100,7 @@ function HomeScreen({ navigation }) {
             fontSize: 20,
           }}>Available Markets</Text>
           <TouchableOpacity>
-            <Text style={{ color: '#7310D8' }}>See all</Text>
+            <Text style={{ color: '#6c63ff' }}>See all</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.Coinsec}>
@@ -131,7 +131,7 @@ function HomeScreen({ navigation }) {
           <TouchableOpacity style={[styles.time, period === 365 ? styles.underline : null]} onPress={() => setPeriod(365)} ><Text styles={styles.textTime}>1 Y</Text></TouchableOpacity>
         </View>
         <TouchableOpacity style={{
-          backgroundColor: '#6633FF',
+          backgroundColor: '#6c63FF',
           borderRadius: 50,
           alignSelf: "center",
           marginTop: 20,
@@ -196,8 +196,8 @@ const styles = StyleSheet.create({
   },
   time: {
     borderWidth: 2,
-    backgroundColor: "#6633ff",
-    borderColor: '#6633ff',
+    backgroundColor: "#6c63ff",
+    borderColor: '#6c63ff',
     padding: 10,
     elevation: 20,
     fontWeight: "bold",

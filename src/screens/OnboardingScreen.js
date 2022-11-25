@@ -19,7 +19,7 @@ const Skip = ({ ...props }) => (
 
 const Dot = ({ selected }) => {
   let backgroundColor;
-  backgroundColor = selected ? '#6633ff' : '#C0C0C0';
+  backgroundColor = selected ? '#6c63ff' : '#C0C0C0';
   return (
     <View
       style={{

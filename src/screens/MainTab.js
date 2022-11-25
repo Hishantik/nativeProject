@@ -25,16 +25,16 @@ function MainTabScreen() {
     <Tab.Navigator
       labeled={false}
       initialRouteName="Dashboard"
-      activeColor="#fff"
-      barStyle={{ backgroundColor: '#28282B' }}
+      activeColor="#6c63ff"
+      barStyle={{ backgroundColor: '#fff' }}
     >
       <Tab.Screen
-        name="Dashboard"
+        name="HomeScreen"
         component={HomeScreen}
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({ color }) => (
-            <Icon name="ios-home" color={color} size={26} />
+            <Icon name="ios-home" color={color} size={20} />
           ),
         }}
       />
@@ -44,7 +44,7 @@ function MainTabScreen() {
         options={{
           tabBarLabel: 'Profile',
           tabBarIcon: ({ color }) => (
-            <Icon name="ios-person" color={color} size={26} />
+            <Icon name="ios-person" color={color} size={20} />
           ),
         }}
       />
@@ -54,7 +54,7 @@ function MainTabScreen() {
         options={{
           tabBarLabel: 'Notification',
           tabBarIcon: ({ color }) => (
-            <Icon name="ios-notifications" color={color} size={26} />
+            <Icon name="ios-notifications" color={color} size={20} />
           ),
         }}
       />

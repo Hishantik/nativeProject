@@ -28,7 +28,7 @@ const LoginScreen = ({ navigation }) => {
         setMessage('');
         if (user.user.emailVerified) {
           alert('You are verified')
-          navigation.dispatch(StackActions.replace('HomeScreen'));
+          navigation.dispatch(StackActions.replace('AppStack'));
         } else {
           alert('Please Verify your email to Login');
         }
@@ -132,12 +132,12 @@ const LoginScreen = ({ navigation }) => {
         <TouchableOpacity style={{ marginTop: 15 }} onPress={() => {
           forgetPassword()
         }}>
-          <Text style={{ fontWeight: '700', color: '#6633FF', textAlign: "center" }}>Forgot password?</Text>
+          <Text style={{ fontWeight: '700', color: '#6c63FF', textAlign: "center" }}>Forgot password?</Text>
         </TouchableOpacity>
         <View style={{ flexDirection: 'column', alignItems: 'center', }}>
           <TouchableOpacity style={{
             elevation: 10,
-            backgroundColor: '#6633FF',
+            backgroundColor: '#6c63FF',
             borderRadius: 50,
             marginTop: 20,
             width: '50%',
@@ -177,7 +177,7 @@ const LoginScreen = ({ navigation }) => {
         }}>
           <Text style={{ fontWeight: '200', color: '#666' }}>New user?</Text>
           <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
-            <Text style={{ color: '#6633FF', fontWeight: 'bold', marginHorizontal: 10 }}>Sign up</Text>
+            <Text style={{ color: '#6c63FF', fontWeight: 'bold', marginHorizontal: 10 }}>Sign up</Text>
           </TouchableOpacity>
         </View>
       </View>
