@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, TouchableOpacity, View } from 'react-native';
+import { Image, TouchableOpacity, View, Text } from 'react-native';
 import Onboarding from 'react-native-onboarding-swiper';
 import Octicons from 'react-native-vector-icons/Octicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -19,7 +19,7 @@ const Skip = ({ ...props }) => (
 
 const Dot = ({ selected }) => {
   let backgroundColor;
-  backgroundColor = selected ? '#6c63ff' : '#C0C0C0';
+  backgroundColor = selected ? '#57606f' : '#a4b0be';
   return (
     <View
       style={{
@@ -68,22 +68,58 @@ const Onboard = ({ navigation }) => {
       onDone={() => navigation.dispatch(StackActions.replace("Main"))}
       pages={[
         {
-          backgroundColor: '#fff',
-          image: <Image style={{ width: 400, height: 280 }} source={require('../../assets/Png/undraw_Ethereum_re_0m68.png')} />,
-          title: 'Onboarding',
-          subtitle: 'Done with React Native Onboarding Swiper',
+          backgroundColor: '#6c63ff',
+          image: <Image style={{
+            width: 300,
+            height: 300,
+            marginBottom: 60,
+          }} source={require('../../assets/Png/deku1.png')} />,
+          title: <Text style={{
+            position: 'relative',
+            bottom: 80,
+            fontWeight: 'bold',
+            fontSize: 30,
+            marginBottom: -50
+          }}>Onboarding</Text>,
+          subtitle: <Text style={{
+
+          }}>Done with React Native Onboarding Swiper</Text>,
         },
         {
-          backgroundColor: '#fff',
-          image: <Image style={{ width: 400, height: 250 }} source={require('../../assets/Png/undraw_Growth_analytics_re_pyxf.png')} />,
-          title: 'Onboarding',
-          subtitle: 'Done with React Native Onboarding Swiper',
+          backgroundColor: '#ffc100',
+          image: <Image style={{
+            width: 300,
+            height: 300,
+            marginBottom: 60,
+          }} source={require('../../assets/Png/deku2.png')} />,
+          title: <Text style={{
+            position: 'relative',
+            bottom: 80,
+            fontWeight: 'bold',
+            fontSize: 30,
+            marginBottom: -50,
+          }}>Onboarding</Text>,
+          subtitle: <Text style={{
+
+          }}>Done with React Native Onboarding Swiper</Text>,
         },
         {
-          backgroundColor: '#fff',
-          image: <Image style={{ width: 400, height: 250 }} source={require('../../assets/Png/undraw_crypto_portfolio_2jy5.png')} />,
-          title: 'Onboarding',
-          subtitle: 'Done with React Native Onboarding Swiper',
+          backgroundColor: '#92e3a9',
+          image: <Image style={{
+            width: 300,
+            height: 300,
+            marginBottom: 60,
+          }} source={require('../../assets/Png/deku3.png')} />,
+          title: <Text style={{
+            position: 'relative',
+            bottom: 80,
+            fontWeight: 'bold',
+            fontSize: 30,
+            marginBottom: -50,
+          }}>Onboarding</Text>,
+          subtitle: <Text style={{
+
+          }}>Done with React Native Onboarding Swiper</Text>,
         }
       ]}
     />

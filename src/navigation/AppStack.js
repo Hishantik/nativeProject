@@ -10,7 +10,11 @@ const Drawer = createDrawerNavigator();
 const AppStack = () => {
 
   return (
-    <Drawer.Navigator drawerContent={props => <CustomDrawer{...props} />} screenOptions={{ headerShown: false }}>
+    <Drawer.Navigator drawerContent={props => <CustomDrawer{...props} />} screenOptions={{
+      headerShown: false,
+      drawerActiveBackgroundColor:"#6c63ff",
+      drawerActiveTintColor:'#ffffff',
+    }}>
       <Drawer.Screen component={MainTabScreen} name="DashBoard" />
       <Drawer.Screen component={Notification} name="Nofifications" />
     </Drawer.Navigator>

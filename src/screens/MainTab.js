@@ -2,6 +2,8 @@ import React from "react";
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 // import { createStackNavigator } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/Ionicons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import Entypo from 'react-native-vector-icons/Entypo';
 
 import HomeScreen from './HomeScreen';
 import ProfileScreen from './Profile';
@@ -25,16 +27,19 @@ function MainTabScreen() {
     <Tab.Navigator
       labeled={false}
       initialRouteName="Dashboard"
-      activeColor="#6c63ff"
-      barStyle={{ backgroundColor: '#fff' }}
+      activeColor="#576574"
+      inactiveColor="#ffffff"
+      shifting={true}
+    // barStyle={{ backgroundColor: '#fff' }}
     >
       <Tab.Screen
         name="HomeScreen"
         component={HomeScreen}
         options={{
           tabBarLabel: 'Home',
+          tabBarColor: '#6c63ff',
           tabBarIcon: ({ color }) => (
-            <Icon name="ios-home" color={color} size={20} />
+            <MaterialIcons name="home" color={color} size={26} />
           ),
         }}
       />
@@ -43,8 +48,9 @@ function MainTabScreen() {
         component={ProfileScreen}
         options={{
           tabBarLabel: 'Profile',
+          tabBarColor: '#ffc100',
           tabBarIcon: ({ color }) => (
-            <Icon name="ios-person" color={color} size={20} />
+            <Entypo name="user" color={color} size={26} />
           ),
         }}
       />
@@ -52,9 +58,11 @@ function MainTabScreen() {
         name="About"
         component={Notification}
         options={{
+          tabBarColor: '#92e3a9',
           tabBarLabel: 'Notification',
+          tabBarBadge: 3,
           tabBarIcon: ({ color }) => (
-            <Icon name="ios-notifications" color={color} size={20} />
+            <MaterialIcons name="notifications" color={color} size={26} />
           ),
         }}
       />

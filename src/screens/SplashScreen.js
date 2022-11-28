@@ -1,6 +1,6 @@
 import { StackActions } from '@react-navigation/native';
 import React, { useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Image, StyleSheet } from 'react-native';
 import { firebase } from '../../config.js';
 
 export default function Splash({ navigation }) {
@@ -22,7 +22,10 @@ export default function Splash({ navigation }) {
 
   return (
     < View style={styles.container} >
-      <Text>SplashScreen</Text>
+      <Image style={{
+        width:300,
+        height:300
+      }} source={require('../../assets/Png/6c63ff-logo.png')} />
     </View >
   );
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, SafeAreaView, TouchableOpacity, ScrollView } from 'react-native';
+import { Image,View, Text, SafeAreaView, TouchableOpacity, ScrollView } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { firebase } from '../../config.js';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
@@ -74,7 +74,12 @@ const SignUp = ({ navigation }) => {
     <SafeAreaView style={{ flex: 1, padding: 20, }}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={{ justifyContent: 'center', marginVertical: -40 }}>
-          <SignupImg width={300} height={300} style={{ marginTop: 30, marginLeft: 20, }} />
+          <Image style={{
+            width:300,
+            height:300,
+            marginTop:30,
+            marginLeft:20,
+          }} source={require('../../assets/Png/SignUp.png')}/>
         </View>
         <Text style={{
           marginTop: 10,

@@ -9,6 +9,8 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@gorhom/bottom-sheet": "^4",
+    "@rainbow-me/animated-charts": "^1.0.0-alpha.6",
     "@react-native-async-storage/async-storage": "^1.17.11",
     "@react-native-community/datetimepicker": "6.5.2",
     "@react-navigation/bottom-tabs": "^6.4.0",
@@ -23,9 +25,10 @@
     "expo-splash-screen": "~0.17.5",
     "expo-status-bar": "~1.4.2",
     "firebase": "^9.14.0",
+    "moment": "^2.29.4",
     "react": "18.1.0",
     "react-native": "0.70.5",
-    "react-native-gesture-handler": "~2.8.0",
+    "react-native-gesture-handler": "^2.8.0",
     "react-native-modal-datetime-picker": "^14.0.0",
     "react-native-onboarding-swiper": "^1.2.0",
     "react-native-paper": "^4.12.5",

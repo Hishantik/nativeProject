@@ -1,8 +1,8 @@
-import React, { useContext, useState } from 'react';
-import { Text, View, SafeAreaView, TouchableOpacity, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { Text, View,Image, SafeAreaView, TouchableOpacity, StyleSheet } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { firebase } from '../../config.js'
-import LoginImg from '../../assets/Svg/bg9-1.svg';
+import LoginImg from '../../assets/Png/Login-amico.png';
 import Facebook from '../../assets/Socials/icons8-facebook.svg';
 import Google from '../../assets/Socials/icons8-google.svg';
 import Twitter from '../../assets/Socials/icons8-twitter.svg';
@@ -35,7 +35,7 @@ const LoginScreen = ({ navigation }) => {
       } else {
         alert("Please enter Login/Password");
         await firebase.auth().currentUser.sendEmailVerification();
-        await firebase.auth().signOut();  
+        await firebase.auth().signOut();
       }
     } catch (err) {
       console.log(err);
@@ -89,7 +89,11 @@ const LoginScreen = ({ navigation }) => {
         paddingHorizontal: 25,
       }}>
         <View style={{ position: 'absolute', top: -240, left: 50 }}>
-          <LoginImg width={300} height={300} />
+          {/* <LoginImg width={300} height={300} /> */}
+          <Image style={{
+            width:300,
+            height:300,
+          }} source={require('../../assets/Png/Login-amico.png')} />
         </View>
         <Text style={{
           fontSize: 26,
@@ -177,7 +181,7 @@ const LoginScreen = ({ navigation }) => {
         }}>
           <Text style={{ fontWeight: '200', color: '#666' }}>New user?</Text>
           <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
-            <Text style={{ color: '#6c63FF', fontWeight: 'bold', marginHorizontal: 10 }}>Sign up</Text>
+            <Text style={{ color: '#6c33FF', fontWeight: 'bold', marginHorizontal: 10 }}>Sign up</Text>
           </TouchableOpacity>
         </View>
       </View>
