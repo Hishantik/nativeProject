@@ -12,8 +12,9 @@ const AppStack = () => {
   return (
     <Drawer.Navigator drawerContent={props => <CustomDrawer{...props} />} screenOptions={{
       headerShown: false,
-      drawerActiveBackgroundColor:"#6c63ff",
-      drawerActiveTintColor:'#ffffff',
+      drawerActiveBackgroundColor: "#6c63ff",
+      drawerActiveTintColor: '#ffffff',
+      swipeEdgeWidth: 0
     }}>
       <Drawer.Screen component={MainTabScreen} name="DashBoard" />
       <Drawer.Screen component={Notification} name="Nofifications" />

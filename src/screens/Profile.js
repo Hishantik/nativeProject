@@ -1,4 +1,4 @@
-import React, { useRef, useMemo, useState } from 'react';
+import React, { useRef, useMemo, useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import {
   BottomSheetModal,
@@ -7,13 +7,24 @@ import {
 import SparkLine from '../../Components/Chart';
 import ListItem from '../../Components/ListItem';
 import { CRYPTO_DATA } from '../../assets/data/CryptoData';
+import { getMarketData } from '../../apiServices/Services';
 import { FlatList } from 'react-native-gesture-handler';
 
 const ProfileScreen = () => {
+  const [data, setData] = useState([]);
   const [selectedCoinData, setSelectedCoinData] = useState(null);
   const bottomSheetModalRef = useRef(null);
   const snapPoints = useMemo(() => ['50%'], []);
 
+
+  useEffect(() => {
+    const fetchMarketData = async () => {
+      const marketData = await getMarketData();
+      setData(marketData);
+    }
+
+    fetchMarketData();
+  }, [])
 
   const openModal = (item) => {
     setSelectedCoinData(item);
@@ -33,13 +44,15 @@ const ProfileScreen = () => {
         {/* <ScrollView showsHorizontalScrollIndicator={false}> */}
         <FlatList
           keyExtractor={(item) => item.id}
-          data={CRYPTO_DATA}
+          data={data}
           renderItem={({ item }) =>
             <ListItem name={item.name}
               symbol={item.symbol}
+              id={item.id}
               currentPrice={item.current_price}
               logoUrl={item.image}
               priceChangePercentage7d={item.price_change_percentage_7d_in_currency}
+              sparkline={item.sparkline_in_7d.price}
               onPress={() =>
                 openModal(item)
               }
