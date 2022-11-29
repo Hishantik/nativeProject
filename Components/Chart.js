@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, Dimensions } from 'react-native';
-// import { ChartDot, ChartPath, ChartPathProvider } from '@rainbow-me/animated-charts';
 
 // export const { width: SIZE } = Dimensions.get('window');
 
@@ -22,8 +21,6 @@ const SparkLine = ({ currentPrice, symbol, logoUrl, name, priceChangePercentage7
         <Text style={styles.Price}>₹{currentPrice}</Text>
         <Text style={[styles.priceChange, { color: priceChangeColor }]}>{priceChangePercentage7d.toFixed(2)}%</Text>
       </View>
-      {/* <ChartPath height={SIZE / 2} stroke="yellow" width={SIZE} /> */}
-      {/* <ChartDot style={{ backgroundColor: 'blue' }} /> */}
     </View>
   );
 }

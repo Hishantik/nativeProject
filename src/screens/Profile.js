@@ -6,7 +6,6 @@ import {
 } from '@gorhom/bottom-sheet';
 import SparkLine from '../../Components/Chart';
 import ListItem from '../../Components/ListItem';
-import { CRYPTO_DATA } from '../../assets/data/CryptoData';
 import { getMarketData } from '../../apiServices/Services';
 import { FlatList } from 'react-native-gesture-handler';
 
