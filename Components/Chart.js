@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, Image, Dimensions } from 'react-native';
 import { ChartDot, ChartPath, ChartPathProvider, ChartYLabel } from '@rainbow-me/animated-charts';
-import { SharedValue, useSharedValue } from 'react-native-reanimated';
+import { useSharedValue } from 'react-native-reanimated';
 
 export const { width: SIZE } = Dimensions.get('window');
 
@@ -28,7 +28,7 @@ const SparkLine = ({ currentPrice, symbol, logoUrl, name, priceChangePercentage7
 
   return (
     <ChartPathProvider data={{ points: sparkline, smoothingStrategy: 'bezier' }}>
-      <View style={styles.chartWrapper}>
+      < View style={styles.chartWrapper} >
         <View style={styles.coinInfoWrapper}>
           <View style={styles.coinInfo}>
             <Image source={{ uri: logoUrl }} style={styles.coinImage} />
@@ -44,16 +44,16 @@ const SparkLine = ({ currentPrice, symbol, logoUrl, name, priceChangePercentage7
           {/* <Text style={styles.Price}>₹{currentPrice}</Text> */}
           <Text style={[styles.priceChange, { color: priceChangeColor }]}>{value} {priceChangePercentage7d.toFixed(2)}%</Text>
         </View>
-        <View style={styles.graph}>
-          <ChartPath
-            height={SIZE / 2}
-            stroke={priceChangeColor}
-            width={SIZE}
-            strokeWidth={2}
-            // selectedStrokeWidth={2}
-          />
-          <ChartDot style={{ backgroundColor: priceChangeColor }} />
-        </View>
+      </View >
+      <View style={styles.graph}>
+        <ChartPath
+          height={SIZE / 2}
+          stroke={priceChangeColor}
+          width={SIZE}
+          strokeWidth={2}
+          selectedStrokeWidth={2}
+        />
+        <ChartDot style={{ backgroundColor: priceChangeColor }} size={13} />
       </View>
     </ChartPathProvider>
   );
