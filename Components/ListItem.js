@@ -5,10 +5,9 @@ import { VictoryLine } from 'victory-native';
 
 const ListItem = ({ name, symbol, currentPrice, priceChangePercentage7d, logoUrl, onPress, sparkline }) => {
   const priceChangeColor = priceChangePercentage7d > 0 ? '#34c759' : '#ff3b30';
-
   return (
     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-      <TouchableOpacity onPress={onPress}>
+      <TouchableOpacity onPress={onPress} >
         <View style={styles.itemWrapper}>
           {/* left Side */}
           <View style={styles.leftWrapper}>

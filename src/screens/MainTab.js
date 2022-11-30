@@ -1,12 +1,12 @@
 import React from "react";
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 // import { createStackNavigator } from '@react-navigation/stack';
-import Icon from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import HomeScreen from './HomeScreen';
-import ProfileScreen from './Profile';
+import MarketScreen from './Market';
 import Notification from './Notification';
 
 // const HomeStack = createNativeStackNavigator(); 
@@ -27,8 +27,8 @@ function MainTabScreen() {
     <Tab.Navigator
       labeled={false}
       initialRouteName="Dashboard"
-      activeColor="#576574"
-      inactiveColor="#ffffff"
+      activeColor="#ffffff"
+      inactiveColor="#ddd"
       shifting={true}
     // barStyle={{ backgroundColor: '#fff' }}
     >
@@ -45,12 +45,12 @@ function MainTabScreen() {
       />
       <Tab.Screen
         name="Profile"
-        component={ProfileScreen}
+        component={MarketScreen}
         options={{
           tabBarLabel: 'Profile',
           tabBarColor: '#ffc100',
           tabBarIcon: ({ color }) => (
-            <Entypo name="user" color={color} size={26} />
+            <AntDesign name="linechart" color={color} size={22} />
           ),
         }}
       />

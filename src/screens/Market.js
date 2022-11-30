@@ -9,11 +9,11 @@ import ListItem from '../../Components/ListItem';
 import { getMarketData } from '../../apiServices/Services';
 import { FlatList } from 'react-native-gesture-handler';
 
-const ProfileScreen = () => {
+const MarketScreen = () => {
   const [data, setData] = useState([]);
   const [selectedCoinData, setSelectedCoinData] = useState(null);
   const bottomSheetModalRef = useRef(null);
-  const snapPoints = useMemo(() => ['50%'], []);
+  const snapPoints = useMemo(() => ['45%'], []);
 
 
   useEffect(() => {
@@ -43,6 +43,7 @@ const ProfileScreen = () => {
         {/* <ScrollView showsHorizontalScrollIndicator={false}> */}
         <FlatList
           keyExtractor={(item) => item.id}
+          showsVerticalScrollIndicator={false}
           data={data}
           renderItem={({ item }) =>
             <ListItem name={item.name}
@@ -73,7 +74,7 @@ const ProfileScreen = () => {
             name={selectedCoinData.name}
             logoUrl={selectedCoinData.image}
             priceChangePercentage7d={selectedCoinData.price_change_percentage_7d_in_currency}
-            sparkLine={selectedCoinData.sparkline_in_7d.price}
+            sparkline={selectedCoinData.sparkline_in_7d.price}
           />
         ) : null}
       </BottomSheetModal>
@@ -82,7 +83,7 @@ const ProfileScreen = () => {
   );
 }
 
-export default ProfileScreen;
+export default MarketScreen;
 
 const styles = StyleSheet.create({
   container: {

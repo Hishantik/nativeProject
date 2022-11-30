@@ -1,8 +1,4 @@
-import React, { useEffect, useState, useRef, useMemo } from 'react';
-import {
-  BottomSheetModal,
-  BottomSheetModalProvider,
-} from '@gorhom/bottom-sheet';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, FlatList, TouchableOpacity, Image, SafeAreaView, ImageBackground } from 'react-native';
 // import Chart from '../../Components/Chart';
 import axios from "axios";
@@ -120,7 +116,8 @@ function HomeScreen({ navigation }) {
       <View style={{
         marginVertical: 10,
         marginBottom: 20,
-        marginHorizontal: 30
+        marginHorizontal: 30,
+        borderRadius:50
       }}>
         <FlatList
           data={coinData}
@@ -175,7 +172,6 @@ function HomeScreen({ navigation }) {
         <TouchableOpacity style={styles.time} onPress={() => setPeriod(365)} ><Text style={{ color: '#fff' }}>1 year</Text></TouchableOpacity>
       </View>
 
-
     </SafeAreaView >
   );
 }
@@ -218,7 +214,9 @@ const styles = StyleSheet.create({
   timeWrapper: {
     width: '100%',
     flexDirection: "row",
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
+    position: 'absolute',
+    bottom: 0,
   },
   coinBtn: {
     width: 50,
