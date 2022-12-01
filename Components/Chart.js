@@ -10,7 +10,6 @@ const SparkLine = ({ currentPrice, symbol, id, logoUrl, name, priceChangePercent
   console.log(id)
 
   const [data, setData] = useState()
-  const [coin, setCoin] = useState("bitcoin");
   const priceChangeColor = priceChangePercentage7d > 0 ? '#34c759' : '#ff3b30';
   const value = priceChangePercentage7d > 0 ? "↑" : "↓";
   const latestCurrentPrice = useSharedValue(currentPrice);
@@ -36,17 +35,9 @@ const SparkLine = ({ currentPrice, symbol, id, logoUrl, name, priceChangePercent
 
   useEffect(() => {
     getData()
-    latestCurrentPrice.value = currentPrice;
+    // latestCurrentPrice.value = currentPrice;
   }, [currentPrice])
 
-  const formatINR = value => {
-    'worklet';
-    if (value === '') {
-      return `₹ ${latestCurrentPrice.value}`;
-    }
-    const formattedValue = `₹ ${parseFloat(value).toFixed(2)}`
-    return formattedValue;
-  };
 
   return (
     <LineChart.Provider data={data}>
@@ -59,15 +50,31 @@ const SparkLine = ({ currentPrice, symbol, id, logoUrl, name, priceChangePercent
           <Text style={styles.coinTitle}>7 days</Text>
         </View>
         <View style={styles.belowTitle}>
-          <Text style={styles.Price}>₹{currentPrice}</Text>
+          <LineChart.PriceText
+            format={(value) => {
+              'worklet';
+              return value.formatted ? `₹ ${value.formatted.replace(/\d(?=(\d{5})+\.)/g, '$&,')} INR` : `₹ ${currentPrice.toLocaleString('en-IN', { currency: 'INR' })} INR`;
+            }}
+            style={styles.Price} />
+          {/* <Text style={styles.Price}>₹{currentPrice}</Text> */}
           <Text style={[styles.priceChange, { color: priceChangeColor }]}>{value} {priceChangePercentage7d.toFixed(2)}%</Text>
         </View>
-        <View>
-          <LineChart>
-            <LineChart.Path />
+        <View style={{
+          marginTop:40
+        }}>
+          <LineChart width={SIZE} height={SIZE / 2}>
+            <LineChart.Path color={priceChangeColor} width={1}/>
+            <LineChart.Gradient color="black" />
             <LineChart.CursorLine />
-            <LineChart.CursorCrosshair>
-              <LineChart.Tooltip />
+            <LineChart.CursorCrosshair color={priceChangeColor}>
+              <LineChart.Tooltip position="top">
+                <LineChart.PriceText
+                  format={(value) => {
+                    'worklet';
+                    return value.formatted ? `₹ ${value.formatted.replace(/\d(?=(\d{5})+\.)/g, '$&,')} INR` : `₹ ${currentPrice.toLocaleString('en-IN', { currency: 'INR' })} INR`;
+                  }}
+                />
+              </LineChart.Tooltip>
               <LineChart.Tooltip position="bottom">
                 <LineChart.DatetimeText />
               </LineChart.Tooltip>
@@ -85,7 +92,7 @@ export default SparkLine;
 
 const styles = StyleSheet.create({
   chartWrapper: {
-    margin: 16
+    marginVertical: 16
   },
   coinInfoWrapper: {
     flexDirection: 'row',
