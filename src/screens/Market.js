@@ -13,7 +13,7 @@ const MarketScreen = () => {
   const [data, setData] = useState([]);
   const [selectedCoinData, setSelectedCoinData] = useState(null);
   const bottomSheetModalRef = useRef(null);
-  const snapPoints = useMemo(() => ['45%'], []);
+  const snapPoints = useMemo(() => ['50%'], []);
 
 
   useEffect(() => {
@@ -75,6 +75,7 @@ const MarketScreen = () => {
             logoUrl={selectedCoinData.image}
             priceChangePercentage7d={selectedCoinData.price_change_percentage_7d_in_currency}
             sparkline={selectedCoinData.sparkline_in_7d.price}
+            id={selectedCoinData.id}
           />
         ) : null}
       </BottomSheetModal>

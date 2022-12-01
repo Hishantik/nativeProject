@@ -1,19 +1,41 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Image, Dimensions } from 'react-native';
-import { ChartDot, ChartPath, ChartPathProvider, ChartYLabel } from '@rainbow-me/animated-charts';
+import { LineChart } from 'react-native-wagmi-charts';
+import axios from "axios";
 import { useSharedValue } from 'react-native-reanimated';
 
 export const { width: SIZE } = Dimensions.get('window');
 
-const SparkLine = ({ currentPrice, symbol, logoUrl, name, priceChangePercentage7d, sparkline }) => {
+const SparkLine = ({ currentPrice, symbol, id, logoUrl, name, priceChangePercentage7d, sparkline }) => {
+  console.log(id)
 
-
+  const [data, setData] = useState()
+  const [coin, setCoin] = useState("bitcoin");
   const priceChangeColor = priceChangePercentage7d > 0 ? '#34c759' : '#ff3b30';
   const value = priceChangePercentage7d > 0 ? "↑" : "↓";
   const latestCurrentPrice = useSharedValue(currentPrice);
 
 
+  const getData = async () => {
+    try {
+      const response = await axios.get(
+        `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=inr&days=7`
+      )
+      const formatData = response.data.prices.map(function(i) {
+        return {
+          timestamp: i[0],
+          value: i[1]
+        }
+      })
+      setData(formatData)
+      console.log(formatData)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
+    getData()
     latestCurrentPrice.value = currentPrice;
   }, [currentPrice])
 
@@ -27,7 +49,7 @@ const SparkLine = ({ currentPrice, symbol, logoUrl, name, priceChangePercentage7
   };
 
   return (
-    <ChartPathProvider data={{ points: sparkline, smoothingStrategy: 'bezier' }}>
+    <LineChart.Provider data={data}>
       < View style={styles.chartWrapper} >
         <View style={styles.coinInfoWrapper}>
           <View style={styles.coinInfo}>
@@ -37,25 +59,23 @@ const SparkLine = ({ currentPrice, symbol, logoUrl, name, priceChangePercentage7
           <Text style={styles.coinTitle}>7 days</Text>
         </View>
         <View style={styles.belowTitle}>
-          <ChartYLabel
-            format={formatINR}
-            style={styles.Price}
-          />
-          {/* <Text style={styles.Price}>₹{currentPrice}</Text> */}
+          <Text style={styles.Price}>₹{currentPrice}</Text>
           <Text style={[styles.priceChange, { color: priceChangeColor }]}>{value} {priceChangePercentage7d.toFixed(2)}%</Text>
         </View>
+        <View>
+          <LineChart>
+            <LineChart.Path />
+            <LineChart.CursorLine />
+            <LineChart.CursorCrosshair>
+              <LineChart.Tooltip />
+              <LineChart.Tooltip position="bottom">
+                <LineChart.DatetimeText />
+              </LineChart.Tooltip>
+            </LineChart.CursorCrosshair >
+          </LineChart>
+        </View>
       </View >
-      <View style={styles.graph}>
-        <ChartPath
-          height={SIZE / 2}
-          stroke={priceChangeColor}
-          width={SIZE}
-          strokeWidth={2}
-          selectedStrokeWidth={2}
-        />
-        <ChartDot style={{ backgroundColor: priceChangeColor }} size={13} />
-      </View>
-    </ChartPathProvider>
+    </LineChart.Provider>
   );
 }
 
@@ -65,7 +85,7 @@ export default SparkLine;
 
 const styles = StyleSheet.create({
   chartWrapper: {
-    marginVertical: 16
+    margin: 16
   },
   coinInfoWrapper: {
     flexDirection: 'row',
