@@ -2,12 +2,14 @@ import React from "react";
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 // import { createStackNavigator } from '@react-navigation/stack';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import Entypo from 'react-native-vector-icons/Entypo';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import HomeScreen from './HomeScreen';
-import MarketScreen from './Market';
+import Portfolio from './PortfolioScreen';
 import Notification from './Notification';
+import { LinearGradient } from "expo-linear-gradient";
+import MaskedView from "@react-native-masked-view/masked-view";
+
 
 // const HomeStack = createNativeStackNavigator(); 
 // const ProfileStack = createNativeStackNavigator(); 
@@ -24,49 +26,67 @@ const Tab = createMaterialBottomTabNavigator();
 
 function MainTabScreen() {
   return (
-    <Tab.Navigator
-      labeled={false}
-      initialRouteName="Dashboard"
-      activeColor="#ffffff"
-      inactiveColor="#ddd"
-      shifting={true}
-    // barStyle={{ backgroundColor: '#fff' }}
-    >
-      <Tab.Screen
-        name="HomeScreen"
-        component={HomeScreen}
-        options={{
-          tabBarLabel: 'Home',
-          tabBarColor: '#6c63ff',
-          tabBarIcon: ({ color }) => (
-            <MaterialIcons name="home" color={color} size={26} />
-          ),
+    <LinearGradient colors={['#232526', '#414345']} style={{ flex: 1 }}>
+      <Tab.Navigator
+        labeled={false}
+        initialRouteName="Dashboard"
+        activeColor="#636637"
+        inactiveColor="#ddd"
+        shifting={false}
+        barStyle={{
+          backgroundColor: 'transparent'
         }}
-      />
-      <Tab.Screen
-        name="Profile"
-        component={MarketScreen}
-        options={{
-          tabBarLabel: 'Profile',
-          tabBarColor: '#ffc100',
-          tabBarIcon: ({ color }) => (
-            <AntDesign name="linechart" color={color} size={22} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="About"
-        component={Notification}
-        options={{
-          tabBarColor: '#92e3a9',
-          tabBarLabel: 'Notification',
-          tabBarBadge: 3,
-          tabBarIcon: ({ color }) => (
-            <MaterialIcons name="notifications" color={color} size={26} />
-          ),
-        }}
-      />
-    </Tab.Navigator>
+      // barStyle={{ backgroundColor: '#fff' }}
+      >
+        <Tab.Screen
+          name="HomeScreen"
+          component={HomeScreen}
+          options={{
+            tabBarLabel: 'Home',
+            tabBarIcon: ({ color }) => (
+              <MaskedView maskElement={<MaterialIcons name="home" color={color} size={26} style={{ backgroundColor: 'transparent' }} />
+              }>
+                <LinearGradient colors={['#5f2c82', '#49a09d']}>
+                  <MaterialIcons name="home" color={color} size={26} style={{ opacity: 0 }} />
+                </LinearGradient>
+              </MaskedView>
+
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Profile"
+          component={Portfolio}
+          options={{
+            tabBarLabel: 'Profile',
+            tabBarIcon: ({ color }) => (
+              <MaskedView maskElement={<AntDesign name="linechart" color={color} size={26} style={{ backgroundColor: 'transparent' }} />
+              }>
+                <LinearGradient colors={['#5f2c82', '#49a09d']}>
+                  <AntDesign name="linechart" color={color} size={26} style={{ opacity: 0 }} />
+                </LinearGradient>
+              </MaskedView>
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="About"
+          component={Notification}
+          options={{
+            tabBarLabel: 'Notification',
+            tabBarBadge: 3,
+            tabBarIcon: ({ color }) => (
+              <MaskedView maskElement={<MaterialIcons name="notifications" color={color} size={26} style={{ backgroundColor: 'transparent' }} />
+              }>
+                <LinearGradient colors={['#5f2c82', '#49a09d']}>
+                  <MaterialIcons name="notifications" color={color} size={26} style={{ opacity: 0 }} />
+                </LinearGradient>
+              </MaskedView>
+            ),
+          }}
+        />
+      </Tab.Navigator>
+    </LinearGradient>
   );
 }
 

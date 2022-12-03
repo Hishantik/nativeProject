@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Image, Dimensions } from 'react-native';
 import { LineChart } from 'react-native-wagmi-charts';
+import { LinearGradient } from 'expo-linear-gradient';
 import axios from "axios";
 import { useSharedValue } from 'react-native-reanimated';
+import MaskedView from '@react-native-masked-view/masked-view';
 
 export const { width: SIZE } = Dimensions.get('window');
 
@@ -40,49 +42,67 @@ const SparkLine = ({ currentPrice, symbol, id, logoUrl, name, priceChangePercent
 
 
   return (
-    <LineChart.Provider data={data}>
-      < View style={styles.chartWrapper} >
-        <View style={styles.coinInfoWrapper}>
-          <View style={styles.coinInfo}>
-            <Image source={{ uri: logoUrl }} style={styles.coinImage} />
-            <Text style={styles.coinTitle}>{name}({symbol.toUpperCase()})</Text>
+    <LinearGradient colors={['#232526', '#414345']}>
+      <LineChart.Provider data={data}>
+        < View style={styles.chartWrapper} >
+          <View style={styles.coinInfoWrapper}>
+            <View style={styles.coinInfo}>
+              <Image source={{ uri: logoUrl }} style={styles.coinImage} />
+              <Text style={styles.coinTitle}>{name}({symbol.toUpperCase()})</Text>
+            </View>
+            <Text style={styles.coinTitle}>7 days</Text>
           </View>
-          <Text style={styles.coinTitle}>7 days</Text>
-        </View>
-        <View style={styles.belowTitle}>
-          <LineChart.PriceText
-            format={(value) => {
-              'worklet';
-              return value.formatted ? `₹ ${value.formatted.replace(/\d(?=(\d{5})+\.)/g, '$&,')} INR` : `₹ ${currentPrice.toLocaleString('en-IN', { currency: 'INR' })} INR`;
-            }}
-            style={styles.Price} />
-          {/* <Text style={styles.Price}>₹{currentPrice}</Text> */}
-          <Text style={[styles.priceChange, { color: priceChangeColor }]}>{value} {priceChangePercentage7d.toFixed(2)}%</Text>
-        </View>
-        <View style={{
-          marginTop:40
-        }}>
-          <LineChart width={SIZE} height={SIZE / 2}>
-            <LineChart.Path color={priceChangeColor} width={1}/>
-            <LineChart.Gradient color="black" />
-            <LineChart.CursorLine />
-            <LineChart.CursorCrosshair color={priceChangeColor}>
-              <LineChart.Tooltip position="top">
+          <View style={styles.belowTitle}>
+
+            <MaskedView maskElement={
+              <LineChart.PriceText
+                format={(value) => {
+                  'worklet';
+                  return value.formatted ? `₹ ${value.formatted.replace(/\d(?=(\d{5})+\.)/g, '$&,')} INR` : `₹ ${currentPrice.toLocaleString('en-IN', { currency: 'INR' })} INR`;
+                }}
+                style={{ backgroundColor: 'transparent' }} />
+            }>
+              <LinearGradient colors={['#5f2c82', '#49a09d']}>
                 <LineChart.PriceText
                   format={(value) => {
                     'worklet';
                     return value.formatted ? `₹ ${value.formatted.replace(/\d(?=(\d{5})+\.)/g, '$&,')} INR` : `₹ ${currentPrice.toLocaleString('en-IN', { currency: 'INR' })} INR`;
                   }}
-                />
-              </LineChart.Tooltip>
-              <LineChart.Tooltip position="bottom">
-                <LineChart.DatetimeText />
-              </LineChart.Tooltip>
-            </LineChart.CursorCrosshair >
-          </LineChart>
-        </View>
-      </View >
-    </LineChart.Provider>
+                  style={{
+                    fontWeight: 'bold',
+                    opacity: 0,
+                    fontSize: 20
+                  }} />
+              </LinearGradient>
+            </MaskedView>
+            <Text style={[styles.priceChange, { color: priceChangeColor }]}>{value} {priceChangePercentage7d.toFixed(2)}%</Text>
+          </View>
+          <View style={{
+            marginTop: 20
+          }}>
+            <LineChart width={SIZE} height={SIZE / 2}>
+              <LineChart.Path color={priceChangeColor} width={2} />
+              <LineChart.Gradient color="black" />
+              <LineChart.CursorLine color={priceChangeColor} />
+              <LineChart.CursorCrosshair color={priceChangeColor}>
+                <LineChart.Tooltip position="top">
+                  <LineChart.PriceText
+                    style={{ color: '#a9abb1' }}
+                    format={(value) => {
+                      'worklet';
+                      return value.formatted ? `₹ ${value.formatted.replace(/\d(?=(\d{5})+\.)/g, '$&,')} INR` : `₹ ${currentPrice.toLocaleString('en-IN', { currency: 'INR' })} INR`;
+                    }}
+                  />
+                </LineChart.Tooltip>
+                <LineChart.Tooltip position="bottom">
+                  <LineChart.DatetimeText style={{ color: '#a9abb1' }} />
+                </LineChart.Tooltip>
+              </LineChart.CursorCrosshair >
+            </LineChart>
+          </View>
+        </View >
+      </LineChart.Provider >
+    </LinearGradient>
   );
 }
 
@@ -119,11 +139,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginHorizontal: 20
 
-  },
-  Price: {
-    fontWeight: 'bold',
-    color: "#000",
-    fontSize: 20
   },
   priceChange: {
     fontSize: 15,
