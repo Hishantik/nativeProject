@@ -1,13 +1,13 @@
 import React, { useRef, useMemo, useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, StyleSheet, } from 'react-native';
 import {
   BottomSheetModal,
   BottomSheetModalProvider,
 } from '@gorhom/bottom-sheet';
 import { LinearGradient } from 'expo-linear-gradient';
-import SparkLine from '../../Components/Chart';
-import ListItem from '../../Components/ListItem';
-import { getMarketData } from '../../apiServices/Services';
+import SparkLine from './Chart';
+import ListItem from './ListItem';
+import { getMarketData } from '../apiServices/Services';
 import { FlashList } from '@shopify/flash-list';
 
 const MarketScreen = () => {

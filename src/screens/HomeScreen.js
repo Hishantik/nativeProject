@@ -5,7 +5,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { getMarketData } from '../../apiServices/Services';
 import MaskedView from '@react-native-masked-view/masked-view';
-import MarketScreen from './Market';
+import MarketScreen from '../../Components/Market';
 import { LinearGradient } from 'expo-linear-gradient';
 import { FlashList } from '@shopify/flash-list';
 import { TextInput } from 'react-native-gesture-handler';
@@ -35,7 +35,6 @@ function HomeScreen({ navigation }) {
     fetchMarketData();
   }, [])
 
-  console.log(coinData);
 
   useEffect(
     () => {
@@ -57,11 +56,11 @@ function HomeScreen({ navigation }) {
         }
       })
       setData(formatData)
-      // console.log(formatData)
     } catch (error) {
       console.log(error);
     }
   }
+ 
 
 
   return (
@@ -182,6 +181,7 @@ function HomeScreen({ navigation }) {
           justifyContent: 'space-between',
           paddingHorizontal: 15
         }}>
+
           <View style={{
             width: '70%',
             borderWidth: 2,

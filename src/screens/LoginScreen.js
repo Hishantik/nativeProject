@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Text, View,Image, SafeAreaView, TouchableOpacity, StyleSheet } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { firebase } from '../../config.js'
-import LoginImg from '../../assets/Png/Login-amico.png';
 import Facebook from '../../assets/Socials/icons8-facebook.svg';
 import Google from '../../assets/Socials/icons8-google.svg';
 import Twitter from '../../assets/Socials/icons8-twitter.svg';

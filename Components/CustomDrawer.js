@@ -4,6 +4,7 @@ import { StackActions, useNavigation } from '@react-navigation/native';
 import { DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { firebase } from '../config.js';
+import { LinearGradient } from 'expo-linear-gradient';
 
 
 
@@ -28,78 +29,96 @@ const CustomDrawer = (props) => {
 
   return (
     <View style={{ flex: 1 }}>
-      <DrawerContentScrollView {...props} contentContainerStyle={{ backgroundColor: '#6c63ff' }}>
-        <ImageBackground source={require('../assets/Png/black-paper.png')} style={{
-          padding: 60,
-        }}>
-          <Image source={require('../assets/Png/Profile.png')} style={{
-            height: 90,
-            width: 90,
-            borderRadius: 45,
-            marginBottom: 10,
-            borderColor: "#57606f",
-            borderWidth: 2,
-            marginLeft: -20
-          }} />
-          <Text style={{
-            marginLeft: -25,
-            color: '#fff',
-            fontWeight: '700',
-            fontSize: 16,
-          }}>{user.userName}</Text>
-        </ImageBackground>
-        <View style={{
-          backgroundColor: "#fff",
-          paddingTop: 10
-        }}>
-          <DrawerItemList {...props} />
-        </View>
-      </DrawerContentScrollView>
-      <View style={{
-        backgroundColor: "#fff",
-        bottomMargin: 20,
-        justifyContent:'center',
-        borderTopWidth:1,
-        borderTopColor:'#dfe4ea'
-      }}>
-        <View style={{
-          flexDirection:'row',
-          justifyContent:'center',
-          paddingVertical:20,
-        }}>
-           <MaterialCommunityIcons name="share" size={26}/>
-          <TouchableOpacity style={{
-            // bottomMargin: 10,
-            marginLeft:10,
+      <LinearGradient colors={['#232526', '#414345']} style={{ flex: 1, }}>
+        <DrawerContentScrollView {...props}  >
+          <LinearGradient colors={['#5f2c82', '#49a09d']} style={{ flex: 1, marginTop: -5 }}>
+            <ImageBackground source={require('../assets/Png/black-paper.png')} style={{
+              padding: 60,
+            }}>
+              <Image source={require('../assets/Png/Profile.png')} style={{
+                height: 100,
+                width: 100,
+                borderRadius: 50,
+                marginBottom: 10,
+                position: 'absolute',
+                top: 70,
+                left: 112,
+                borderColor: "#57606f",
+                borderWidth: 2,
+                marginLeft: -20
+              }} />
+            </ImageBackground>
+          </LinearGradient>
+          <View style={{
+            flex: 1,
+            marginTop:55,
+            justifyContent: 'center',
+            alignItems: 'center'
           }}>
             <Text style={{
-              fontSize:16,
-              fontWeight:'500',
-              fontStyle:'italic',
-            }}>Invite friend?</Text>
-          </TouchableOpacity>
-        </View>
-        <TouchableOpacity style={{
-          backgroundColor: '#6c63FF',
-          borderRadius: 50,
-          alignSelf: "center",
-          marginBottom:40,
-          width: '50%',
-          paddingVertical: 10,
-          flexDirection:'row',
-          alignItems:'center',
-          justifyContent:'center'
-        }}
-          onPress={async () => {
-            await firebase.auth().signOut();
-            navigation.dispatch(StackActions.replace('LoginScreen'));
+              color: '#fff',
+              fontWeight: '700',
+              fontSize: 16,
+            }}>{user.userName}</Text>
+          </View>
+          <View style={{
+            marginTop: 100,
+            height: '100%'
+          }}>
+            <DrawerItemList {...props} />
+          </View>
+        </DrawerContentScrollView>
+      </LinearGradient>
+      <View style={{
+        bottomMargin: 20,
+        justifyContent: 'center',
+        borderTopWidth: 1,
+        borderTopColor: '#dfe4ea'
+      }}>
+        <LinearGradient colors={['#232526', '#414345']} >
+          <View style={{
+            paddingVertical: 20,
+          }}>
+            <TouchableOpacity style={{
+              // bottomMargin: 10,
+              justifyContent: 'center',
+              flexDirection: 'row',
+              marginLeft: 10,
+            }}>
+              <MaterialCommunityIcons name="share" color={'#c6c6c6'} size={26} />
+              <Text style={{
+                marginLeft: 4,
+                fontSize: 16,
+                fontWeight: '500',
+                fontStyle: 'italic',
+                color: '#c6c6c6'
+              }}>Invite friend?</Text>
+            </TouchableOpacity>
+          </View>
+          <TouchableOpacity style={{
           }}
-        >
-          <MaterialCommunityIcons name='exit-to-app' size={20} color={"#ffffff"}/>
-          <Text style={{ marginLeft:10, textAlign: 'center', color: '#fff' }}>logout</Text>
-        </TouchableOpacity>
+            onPress={async () => {
+              await firebase.auth().signOut();
+              navigation.dispatch(StackActions.replace('LoginScreen'));
+            }}
+          >
+            <LinearGradient colors={['#5f2c82', '#49a09d']} style={{
+              backgroundColor: '#6c63FF',
+              borderRadius: 50,
+              alignSelf: "center",
+              marginBottom: 40,
+              width: '50%',
+              paddingVertical: 10,
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+              <MaterialCommunityIcons name='exit-to-app' size={20} color={"#c6c6c6"} />
+              <Text style={{ marginLeft: 10, textAlign: 'center', color: '#c6c6c6' }}>logout</Text>
+            </LinearGradient>
+          </TouchableOpacity>
+        </LinearGradient>
       </View>
-
     </View>
   );
 }

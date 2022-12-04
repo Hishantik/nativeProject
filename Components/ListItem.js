@@ -40,9 +40,12 @@ const ListItem = ({ name, symbol, currentPrice, priceChangePercentage7d, logoUrl
         {/* right side */}
         <View style={styles.rightWrapper}>
           <Text style={styles.coinName}>₹{currentPrice.toLocaleString("en-IN", { currency: "INR" })}</Text>
-          <Text style={[styles.coinAbbr, { color: priceChangeColor }]}>{value} {priceChangePercentage7d.toFixed(4)}%</Text>
+          <Text style={[styles.coinAbbr, { color: priceChangeColor }]}>{value} {priceChangePercentage7d.toFixed(3)}%</Text>
         </View>
       </View>
+        <View style={{
+    height: StyleSheet.hairlineWidth,
+      }}></View>
     </TouchableOpacity >
   );
 }

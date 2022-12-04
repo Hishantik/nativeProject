@@ -10,10 +10,9 @@ export default function Splash({ navigation }) {
       const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
         const routeName = user !== null ? 'HomeScreen' : 'Onboard';
         navigation.dispatch(StackActions.replace(routeName));
-        console.log(user);
       });
       unsubscribe();
-    }, 2000);
+    }, 1000);
 
     return () => { };
   }, []);
@@ -23,8 +22,8 @@ export default function Splash({ navigation }) {
   return (
     < View style={styles.container} >
       <Image style={{
-        width:300,
-        height:300
+        width: 300,
+        height: 300
       }} source={require('../../assets/Png/6c63ff-logo.png')} />
     </View >
   );
