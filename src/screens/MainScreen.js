@@ -3,12 +3,13 @@ import {
   SafeAreaView,
   View,
   Text,
+  Image,
   TouchableOpacity,
 } from 'react-native';
-import BitCoinImg from '../../assets/BitCoin.svg';
 import { useFonts } from 'expo-font';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { StackActions } from '@react-navigation/native';
+import { LinearGradient } from 'expo-linear-gradient';
 
 
 
@@ -22,48 +23,52 @@ const Main = ({ navigation }) => {
     return null;
   }
   return (
-    <SafeAreaView style={{
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#fff',
-    }
-    }>
-      <View style={{
-        position: 'absolute',
-        top: 140,
-      }}>
-        <Text style={{
-          fontSize: 30,
-          fontWeight: 'bold',
-          color: '#330033'
-        }}>CRYPTO TRACKER</Text>
-      </View>
-      <BitCoinImg width={300} height={300} />
-      <TouchableOpacity
-        onPress={() => navigation.dispatch(StackActions.replace('LoginScreen'))}
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          backgroundColor: '#6c63FF',
-          elevation: 20,
-          padding: 20,
-          width: '90%',
-          borderRadius: 50,
+    <LinearGradient colors={['#232526', '#414345']} style={{ flex: 1 }}>
+      <SafeAreaView style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+      }
+      }>
+        <View style={{
           position: 'absolute',
-          bottom: 130,
+          top: 140,
         }}>
-        <Text style={{
-          color: '#fff',
-          fontWeight: 'bold',
-          fontFamily: 'ZillaSlab',
-          fontSize: 15,
-        }}>
-          Let's Proceed!
-        </Text>
-        <MaterialIcons name='arrow-forward-ios' size={22} color='#fff' />
-      </TouchableOpacity>
-    </SafeAreaView >
+          <Text style={{
+            fontSize: 30,
+            fontWeight: 'bold',
+            color: '#c6c6c6',
+            marginBotton: 20
+          }}>CRYPTODECK </Text>
+        </View>
+        <Image source={require('../../assets/Png/Bitcoin-bro.png')} style={{ height: 300, width: 300 }} />
+        <TouchableOpacity
+          onPress={() => navigation.dispatch(StackActions.replace('LoginScreen'))}
+          style={{
+            marginTop: 50,
+            width: '90%',
+            borderRadius: 50,
+          }}>
+          <LinearGradient colors={['#5f2c82', '#49a09d']} style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            elevation: 20,
+            padding: 20,
+            borderRadius: 50,
+          }}>
+            <Text style={{
+              color: '#fff',
+              fontWeight: 'bold',
+              fontFamily: 'ZillaSlab',
+              fontSize: 15,
+            }}>
+              Let's Proceed!
+            </Text>
+            <MaterialIcons name='arrow-forward-ios' size={22} color='#fff' />
+          </LinearGradient>
+        </TouchableOpacity>
+      </SafeAreaView >
+    </LinearGradient>
   );
 }
 

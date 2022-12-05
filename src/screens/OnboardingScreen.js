@@ -3,7 +3,9 @@ import { Image, TouchableOpacity, View, Text } from 'react-native';
 import Onboarding from 'react-native-onboarding-swiper';
 import Octicons from 'react-native-vector-icons/Octicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import LinearGradient from 'expo-linear-gradient';
 import { StackActions } from '@react-navigation/native';
+import MaskedView from '@react-native-masked-view/masked-view';
 
 const Skip = ({ ...props }) => (
   <TouchableOpacity style={{
@@ -13,7 +15,7 @@ const Skip = ({ ...props }) => (
     width: '50%',
     borderRadius: 50,
   }} {...props} >
-    <Octicons name="skip" size={30} />
+    <Octicons name="skip" size={30} color={'#c6c6c6'} />
   </TouchableOpacity>
 );
 
@@ -40,7 +42,8 @@ const Next = ({ ...props }) => (
     width: '50%',
     borderRadius: 50
   }} {...props} >
-    <MaterialIcons name="navigate-next" size={40} />
+    <MaterialIcons name="navigate-next" color={'#c6c6c6'} size={40} />
+
   </TouchableOpacity>
 );
 
@@ -52,7 +55,7 @@ const Done = ({ ...props }) => (
     width: '50%',
     borderRadius: 50
   }} {...props} >
-    <MaterialIcons name="done" size={30} />
+    <MaterialIcons name="done" color={'#c6c6c6'} size={30} />
   </TouchableOpacity>
 );
 
@@ -68,7 +71,7 @@ const Onboard = ({ navigation }) => {
       onDone={() => navigation.dispatch(StackActions.replace("Main"))}
       pages={[
         {
-          backgroundColor: '#6c63ff',
+          backgroundColor: '#3d3d3d',
           image: <Image style={{
             width: 300,
             height: 300,
@@ -86,7 +89,7 @@ const Onboard = ({ navigation }) => {
           }}>Done with React Native Onboarding Swiper</Text>,
         },
         {
-          backgroundColor: '#ffc100',
+          backgroundColor: '#3d3d3d',
           image: <Image style={{
             width: 300,
             height: 300,
@@ -104,7 +107,7 @@ const Onboard = ({ navigation }) => {
           }}>Done with React Native Onboarding Swiper</Text>,
         },
         {
-          backgroundColor: '#92e3a9',
+          backgroundColor: '#3d3d3d',
           image: <Image style={{
             width: 300,
             height: 300,

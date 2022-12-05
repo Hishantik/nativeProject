@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 
-const Notification = () => {
+const Settings = () => {
   return (
     <LinearGradient
       colors={['#232526', '#414345']}
@@ -14,7 +14,7 @@ const Notification = () => {
   );
 }
 
-export default Notification;
+export default Settings;
 
 const styles = StyleSheet.create({
   container: {

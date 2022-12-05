@@ -6,8 +6,8 @@ import { firebase } from '../../config.js';
 export default function Splash({ navigation }) {
 
   useEffect(() => {
-    setTimeout(() => {
-      const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+    setTimeout(async() => {
+      const unsubscribe = await firebase.auth().onAuthStateChanged((user) => {
         const routeName = user !== null ? 'HomeScreen' : 'Onboard';
         navigation.dispatch(StackActions.replace(routeName));
       });

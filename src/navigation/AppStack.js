@@ -2,7 +2,7 @@ import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 //importing screens
 import MainTabScreen from '../screens/MainTab';
-import Notification from '../screens/Notification';
+import Settings from '../screens/Notification';
 import Portfolio from '../screens/PortfolioScreen';
 import CustomDrawer from '../../Components/CustomDrawer';
 
@@ -19,8 +19,8 @@ const AppStack = () => {
       swipeEdgeWidth: 0
     }}>
       <Drawer.Screen component={MainTabScreen} name="DashBoard" />
-      <Drawer.Screen component={Notification} name="Nofifications" />
-      <Drawer.Screen component={Portfolio} name="Portfolio" />
+      <Drawer.Screen component={Portfolio} name="Profile" />
+      <Drawer.Screen component={Settings} name="Settings" />
     </Drawer.Navigator>
   );
 }

@@ -7,7 +7,7 @@ import Fontisto from 'react-native-vector-icons/Fontisto';
 
 import HomeScreen from './HomeScreen';
 import Portfolio from './PortfolioScreen';
-import Notification from './Notification';
+import Settings from './Notification';
 import { LinearGradient } from "expo-linear-gradient";
 import MaskedView from "@react-native-masked-view/masked-view";
 
@@ -28,7 +28,7 @@ const Tab = createMaterialBottomTabNavigator();
 function MainTabScreen() {
   return (
     <Tab.Navigator
-      // labeled={false}
+      labeled={false}
       initialRouteName="HomeScreen"
       tabBarActiveBackgroundColor='#fff'
       activeColor="#636637"
@@ -71,9 +71,9 @@ function MainTabScreen() {
       />
       <Tab.Screen
         name="About"
-        component={Notification}
+        component={Settings}
         options={{
-          tabBarLabel: 'Notification',
+          tabBarLabel: 'Settings',
           tabBarIcon: ({ color }) => (
             <MaskedView maskElement={<Fontisto name="player-settings" color={color} size={26} style={{ backgroundColor: 'transparent', }} />
             }>

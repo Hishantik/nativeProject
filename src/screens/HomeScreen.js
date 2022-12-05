@@ -16,11 +16,10 @@ import { TextInput } from 'react-native-gesture-handler';
 
 function HomeScreen({ navigation }) {
   const [coinData, setCoinData] = useState([]);
-  const [data, setData] = useState()
-  const snapPoints = useMemo(() => ['40%'], []);
-  const [coin, setCoin] = useState("bitcoin");
-  const [period, setPeriod] = useState(30);
-  const [selectedCoinData, setSelectedCoinData] = useState(null);
+  // const [data, setData] = useState()
+  // const [coin, setCoin] = useState("bitcoin");
+  // const [period, setPeriod] = useState(30);
+  // const [selectedCoinData, setSelectedCoinData] = useState(null);
 
 
 
@@ -36,31 +35,31 @@ function HomeScreen({ navigation }) {
   }, [])
 
 
-  useEffect(
-    () => {
-      getData()
-    },
-    [coin, period]
-  )
+  // useEffect(
+  //   () => {
+  //     getData()
+  //   },
+  //   [coin, period]
+  // )
 
 
-  async function getData() {
-    try {
-      const response = await axios.get(
-        `https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=inr&days=${period}`
-      )
-      const formatData = response.data.prices.map(function(i) {
-        return {
-          x: i[0],
-          y: i[1]
-        }
-      })
-      setData(formatData)
-    } catch (error) {
-      console.log(error);
-    }
-  }
- 
+ //  async function getData() {
+ //    try {
+ //      const response = await axios.get(
+ //        `https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=inr&days=${period}`
+ //      )
+ //      const formatData = response.data.prices.map(function(i) {
+ //        return {
+ //          x: i[0],
+ //          y: i[1]
+ //        }
+ //      })
+ //      setData(formatData)
+ //    } catch (error) {
+ //      console.log(error);
+ //    }
+ //  }
+ // 
 
 
   return (
@@ -150,8 +149,8 @@ function HomeScreen({ navigation }) {
                 elevation: 30
               }}
                 onPress={() => {
-                  setCoin(item.id);
-                  setSelectedCoinData(item);
+                  // setCoin(item.id);
+                  // setSelectedCoinData(item);
                 }}>
                 <LinearGradient colors={['#5f2c82', '#49a09d']}
                   style={{
