@@ -1,5 +1,5 @@
-import React, { useRef, useMemo, useState, useEffect } from 'react';
-import { View, StyleSheet, } from 'react-native';
+import React, { useRef, useMemo, useState, useEffect, useCallback } from 'react';
+import { View, StyleSheet,Text } from 'react-native';
 import {
   BottomSheetModal,
   BottomSheetModalProvider,
@@ -9,22 +9,23 @@ import SparkLine from './Chart';
 import ListItem from './ListItem';
 import { getMarketData } from '../apiServices/Services';
 import { FlashList } from '@shopify/flash-list';
+import { RefreshControl } from 'react-native-gesture-handler';
 
 const MarketScreen = () => {
   const [data, setData] = useState([]);
   const [selectedCoinData, setSelectedCoinData] = useState(null);
+  const [loading, setLoading] = useState(false);
   const bottomSheetModalRef = useRef(null);
   const snapPoints = useMemo(() => ['40%'], []);
 
+  // useEffect(() => {
+  //   const fetchMarketData = async () => {
+  //     const marketData = await getMarketData();
+  //     setData(marketData);
+  //   }
 
-  useEffect(() => {
-    const fetchMarketData = async () => {
-      const marketData = await getMarketData();
-      setData(marketData);
-    }
-
-    fetchMarketData();
-  }, [])
+  //   fetchMarketData();
+  // }, [])
 
   const openModal = (item) => {
     setSelectedCoinData(item);
@@ -32,15 +33,50 @@ const MarketScreen = () => {
   }
 
 
+  const fetchCoins = async () => {
+    if (loading) {
+      return;
+    }
+    setLoading(true);
+    const coinsData = await getMarketData();
+    setData(coinsData);
+    setLoading(false);
+  };
+
+  const refetchCoins = async () => {
+    if (loading) {
+      return;
+    }
+    setLoading(true);
+    const coinsData = await getMarketData();
+    setData(coinsData);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchCoins();
+  }, []);
+
   return (
     <BottomSheetModalProvider>
       <View style={styles.container} >
         <View style={styles.divider}></View>
+        <View style={styles.coinListHeader}>
+          <Text style={styles.coinListTitle}>Coins</Text>
+          <Text style={[styles.coinListTitle,{marginLeft:30}]}>Last 7 days</Text>
+          <Text style={styles.coinListTitle}>Price</Text>
+        </View>
         <LinearGradient colors={['#232526', '#414345']} style={{ flex: 1 }}>
           <FlashList
             keyExtractor={(item) => item.id}
             estimatedItemSize={100}
             showsVerticalScrollIndicator={false}
+            refreshControl={<RefreshControl
+              refreshing={loading}
+              tintColor="#c6c6c6"
+              onRefresh={refetchCoins}
+            />
+            }
             data={data}
             renderItem={({ item }) =>
               <ListItem name={item.name}
@@ -64,6 +100,9 @@ const MarketScreen = () => {
           ref={bottomSheetModalRef}
           index={0}
           snapPoints={snapPoints}
+          bottomInset={15}
+          detached={true}
+          backgroundStyle={styles.backGroundstyle}
           style={styles.bottomSheet}
         >
           {selectedCoinData ? (
@@ -103,18 +142,28 @@ const styles = StyleSheet.create({
   divider: {
     height: StyleSheet.hairlineWidth,
     backgroundColor: '#a9abb1',
-    marginHorizontal: 16,
   },
   bottomSheet: {
     shadowColor: "#fff",
-    backgroundColor: 'transparent',
-    // shadowOffset: {
-    //   width: 0,
-    //   height: -8,
-    // },
-    shadowOpacity: 1,
-    shadowRadius: 20,
-    elevation: 20,
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65,
+    elevation: 7,
   },
+  backGroundstyle: {
+    backgroundColor: '#3d3d3d'
+  },
+  coinListHeader:{
+    flexDirection:'row',
+    justifyContent:'space-around',
+    backgroundColor:'#3d3d3d'
+  },
+  coinListTitle:{
+    color:'#c6c6c6',
+    fontWeight:'900'
+  }
 
 })

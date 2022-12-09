@@ -1,13 +1,13 @@
 import React from 'react';
-import { View, Image, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import { View, Image, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { VictoryLine } from 'victory-native';
-import MaskedView from '@react-native-masked-view/masked-view';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 
 const ListItem = ({ name, symbol, currentPrice, priceChangePercentage7d, logoUrl, onPress, sparkline }) => {
   const priceChangeColor = priceChangePercentage7d > 0 ? '#34c759' : '#ff3b30';
-  const value = priceChangePercentage7d > 0 ? "↑" : "↓";
+  const formattedCurrency = currentPrice.toString().replace(/(\d)(?=(\d{2})+\d\.)/g, '$1,');
+
   return (
     <TouchableOpacity onPress={onPress} >
       <View style={styles.itemWrapper}>
@@ -15,12 +15,7 @@ const ListItem = ({ name, symbol, currentPrice, priceChangePercentage7d, logoUrl
         <View style={styles.leftWrapper}>
           <Image source={{ uri: logoUrl }} style={styles.image} />
           <View style={styles.coinNameWrapper}>
-            <MaskedView maskElement={
-              <Text style={[styles.coinName, { width: 85, fontWeight: 'bold', backgroundColor: 'transparent' }]}>{name}</Text>}>
-              <LinearGradient colors={['#5f2c82', '#49a09d']}>
-                <Text style={[styles.coinName, { width: 85, fontWeight: '900', opacity: 0 }]}>{name}</Text>
-              </LinearGradient>
-            </MaskedView>
+            <Text style={[styles.coinName, { width: 85, fontWeight: '900', }]}>{name}</Text>
             <Text style={styles.coinAbbr}>{symbol.toUpperCase()}</Text>
           </View>
         </View>
@@ -39,12 +34,22 @@ const ListItem = ({ name, symbol, currentPrice, priceChangePercentage7d, logoUrl
         </View>
         {/* right side */}
         <View style={styles.rightWrapper}>
-          <Text style={styles.coinName}>₹{currentPrice.toLocaleString("en-IN", { currency: "INR" })}</Text>
-          <Text style={[styles.coinAbbr, { color: priceChangeColor }]}>{value} {priceChangePercentage7d.toFixed(3)}%</Text>
+          <Text style={[styles.coinName, { fontSize: 13 }]}>₹ {formattedCurrency}</Text>
+          <View style={{
+            flexDirection: 'row',
+            alignItems: 'center'
+          }}>
+            {
+              priceChangePercentage7d > 0 ?
+                <MaterialIcons name='arrow-drop-up' size={26} color={priceChangeColor} /> :
+                <MaterialIcons name='arrow-drop-down' size={26} color={priceChangeColor} />
+            }
+            <Text style={[styles.coinAbbr, { color: priceChangeColor }]}>{priceChangePercentage7d.toFixed(3)}%</Text>
+          </View>
         </View>
       </View>
-        <View style={{
-    height: StyleSheet.hairlineWidth,
+      <View style={{
+        height: StyleSheet.hairlineWidth,
       }}></View>
     </TouchableOpacity >
   );
@@ -80,6 +85,7 @@ const styles = StyleSheet.create({
   coinName: {
     fontSize: 15,
     fontWeight: '500',
+    color: '#c6c6c6'
   },
   coinAbbr: {
     fontsize: 8,

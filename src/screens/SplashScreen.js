@@ -1,4 +1,5 @@
 import { StackActions } from '@react-navigation/native';
+import { LinearGradient } from 'expo-linear-gradient';
 import React, { useEffect } from 'react';
 import { View, Image, StyleSheet } from 'react-native';
 import { firebase } from '../../config.js';
@@ -6,7 +7,7 @@ import { firebase } from '../../config.js';
 export default function Splash({ navigation }) {
 
   useEffect(() => {
-    setTimeout(async() => {
+    setTimeout(async () => {
       const unsubscribe = await firebase.auth().onAuthStateChanged((user) => {
         const routeName = user !== null ? 'HomeScreen' : 'Onboard';
         navigation.dispatch(StackActions.replace(routeName));
@@ -20,12 +21,17 @@ export default function Splash({ navigation }) {
 
 
   return (
-    < View style={styles.container} >
-      <Image style={{
-        width: 300,
-        height: 300
-      }} source={require('../../assets/Png/6c63ff-logo.png')} />
-    </View >
+    <LinearGradient
+      colors={['#232526', '#414345']}
+      style={{ flex: 1 }}
+    >
+      < View style={styles.container} >
+        <Image style={{
+          width: 160,
+          height: 160
+        }} source={require('../../assets/Png/BrandLogo.png')} />
+      </View >
+    </LinearGradient >
   );
 }
 

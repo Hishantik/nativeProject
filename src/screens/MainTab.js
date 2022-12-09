@@ -3,7 +3,8 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 // import { createStackNavigator } from '@react-navigation/stack';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import Fontisto from 'react-native-vector-icons/Fontisto';
+import Feather from 'react-native-vector-icons/Feather';
+import Octicons from 'react-native-vector-icons/Octicons';
 
 import HomeScreen from './HomeScreen';
 import Portfolio from './PortfolioScreen';
@@ -34,7 +35,8 @@ function MainTabScreen() {
       activeColor="#636637"
       inactiveColor="#ddd"
       barStyle={{
-        backgroundColor: '#3d3d3d'
+        backgroundColor: '#3d3d3d',
+        padding: 5,
       }}
     // barStyle={{ backgroundColor: '#fff' }}
     >
@@ -43,11 +45,11 @@ function MainTabScreen() {
         component={HomeScreen}
         options={{
           tabBarLabel: 'Home',
-          tabBarIcon: ({ color }) => (
-            <MaskedView maskElement={<MaterialIcons name="home" color={color} size={26} style={{ backgroundColor: 'transparent' }} />
+          tabBarIcon: ({ focused, color }) => (
+            <MaskedView maskElement={<Octicons name="home" color={color} size={focused ? 30 : 26} style={{ backgroundColor: 'transparent' }} />
             }>
-              <LinearGradient colors={['#5f2c82', '#49a09d']}>
-                <MaterialIcons name="home" color={color} size={26} style={{ opacity: 0 }} />
+              <LinearGradient colors={['#5f2c82', '#49a09d']} style={{ width: 30, height: 30 }}>
+                <Octicons name="home" color={color} size={focused ? 30 : 26} style={{ opacity: 0 }} />
               </LinearGradient>
             </MaskedView>
           ),
@@ -59,11 +61,11 @@ function MainTabScreen() {
         options={{
           tabBarLabel: 'Profile',
           tabBarBadge: 3,
-          tabBarIcon: ({ color }) => (
-            <MaskedView maskElement={<Ionicons name="person-sharp" color={color} size={26} style={{ backgroundColor: 'transparent', }} />
+          tabBarIcon: ({ focused, color }) => (
+            <MaskedView maskElement={<Ionicons name="ios-person-circle-outline" color={color} size={focused ? 30 : 26} style={{ backgroundColor: 'transparent', }} />
             }>
-              <LinearGradient colors={['#5f2c82', '#49a09d']}>
-                <Ionicons name="person-sharp" color={color} size={26} style={{ opacity: 0 }} />
+              <LinearGradient colors={['#5f2c82', '#49a09d']} style={{ width: 30, height: 30 }}>
+                <Ionicons name="ios-person-circle-outline" color={color} size={26} style={{ opacity: 0 }} />
               </LinearGradient>
             </MaskedView>
           ),
@@ -74,11 +76,11 @@ function MainTabScreen() {
         component={Settings}
         options={{
           tabBarLabel: 'Settings',
-          tabBarIcon: ({ color }) => (
-            <MaskedView maskElement={<Fontisto name="player-settings" color={color} size={26} style={{ backgroundColor: 'transparent', }} />
+          tabBarIcon: ({ focused, color }) => (
+            <MaskedView maskElement={<Feather name="settings" color={color} size={focused ? 30 : 26} style={{ backgroundColor: 'transparent' }} />
             }>
-              <LinearGradient colors={['#5f2c82', '#49a09d']} style={{ padding: 5 }}>
-                <Fontisto name="player-settings" color={color} size={23} style={{ opacity: 0, margin: 10 }} />
+              <LinearGradient colors={['#5f2c82', '#49a09d']} style={{ width: 30, height: 30 }}>
+                <Feather name="settings" color={color} size={23} style={{ opacity: 0, }} />
               </LinearGradient>
             </MaskedView>
           ),

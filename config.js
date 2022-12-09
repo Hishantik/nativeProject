@@ -8,6 +8,7 @@ import 'firebase/compat/firestore';
 //My Web app's firebase configuration
 
 
+//Initialize firebase
 
 const firebaseConfig = {
   apiKey: "AIzaSyDVczfgcktfFLSIkKeoCl7EieI4U8gQZT4",
