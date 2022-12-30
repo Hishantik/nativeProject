@@ -40,7 +40,7 @@
 
 - **Adfree**, No annoying ads
 - **Wishlist**, Track your desired cryptocurrency
-- Calculate the current market value provided **crypto calculator**
+- Calculate the current market value using **crypto calculator**
 </font>
 
 ## *Contributing* :
@@ -60,16 +60,27 @@ If you have any questions regarding the project , [join our discord server](http
   
 ***
 
-## *License* :
+## *License* : 
+<font size=5>
+
+     Copyright © 2022 CryptoDeck Open Source Project
+
+<font size=3>
+
+     This Source Code Form is subject to the terms of the Mozilla Public
+     License, v. 2.0. If a copy of the MPL was not distributed with this
+     file, You can obtain one at http://mozilla.org/MPL/2.0/.
+</font>
+</font>
 
 ***
 
 ## *Credits* :
 
 <div align=center>
-<font size=2>
+<font size=1>
 
-People who have contributed to this project :
+*People who have contributed to this project :*
 </font>
 
   <a href="https://github.com/Hishantik/nativeProject/graphs/contributors">
