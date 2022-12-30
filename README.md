@@ -12,15 +12,20 @@
 
 ***
 
-<h3 align=center>A simple and interactive way of tracking crypto market app</h3>
+<div align=center>
+<font size=3>
+
+**A simple and interactive way of tracking crypto market app**
+</font>
+</div>
 
 <font size=4>
 <h1 align=center>Showcase</h1>
 </font>
 <div align=center>
-<img width=250 height=500 src="https://user-images.githubusercontent.com/60609786/210037093-015a8d28-5fdd-495b-b546-68293870b48e.jpg">
-<img width=250 height=500 src="https://user-images.githubusercontent.com/60609786/210037302-e42077c0-d204-494c-93f7-b285c7e7dc46.jpg">
-<img width=250 height=500 src="https://user-images.githubusercontent.com/60609786/210037326-634d72e3-12e6-499f-83d6-3c5d489dfd79.jpg">
+<img width=100 height=200 src="https://user-images.githubusercontent.com/60609786/210037093-015a8d28-5fdd-495b-b546-68293870b48e.jpg">
+<img width=100 height=200 src="https://user-images.githubusercontent.com/60609786/210037302-e42077c0-d204-494c-93f7-b285c7e7dc46.jpg">
+<img width=100 height=200 src="https://user-images.githubusercontent.com/60609786/210037326-634d72e3-12e6-499f-83d6-3c5d489dfd79.jpg">
 </div>
 
 ***
