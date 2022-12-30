@@ -1,41 +1,85 @@
-# nativeProject
----
-##This is a personal project  on building  interactive cryptocharting app.....
+<div align=center>
+<img width=60 src="https://user-images.githubusercontent.com/60609786/210036237-35bdd914-c1aa-4961-a9f3-54b8a39a3935.png">
+</div>
+<h1 align=center>Welcome to CryptoDeck</h1>
 
+<div align=center>
+<img  src="https://img.shields.io/badge/PRs-Welcome-006400?logo=GitHub Actions">
+<img  src="https://img.shields.io/badge/Platform-Android-006400?logo=Android">
+<img  src="https://img.shields.io/badge/Platform-Ios-006400?logo=Apple">
 
----
+</div>
 
+***
 
-##Technology Used:
-<p>vanilla js</p><br>
-<p>react native library</p><br>
-<p>expo cli and eas cli</p><br>
+<h3 align=center>A simple and interactive way of tracking crypto market app</h3>
 
-###Collection of node-modules and its dependencies
+<font size=4>
+<h1 align=center>Showcase</h1>
+</font>
+<div align=center>
+<img width=250 height=500 src="https://user-images.githubusercontent.com/60609786/210037093-015a8d28-5fdd-495b-b546-68293870b48e.jpg">
+<img width=250 height=500 src="https://user-images.githubusercontent.com/60609786/210037302-e42077c0-d204-494c-93f7-b285c7e7dc46.jpg">
+<img width=250 height=500 src="https://user-images.githubusercontent.com/60609786/210037326-634d72e3-12e6-499f-83d6-3c5d489dfd79.jpg">
+</div>
 
-    "@react-navigation/bottom-tabs": "^6.4.0",
-    "@react-navigation/drawer": "^6.5.0",
-    "@react-navigation/material-bottom-tabs": "^6.2.4",
-    "@react-navigation/native": "^6.0.13",
-    "@react-navigation/native-stack": "^6.9.1",
-    "axios": "^1.1.3",
-    "expo": "~47.0.3",
-    "expo-font": "^11.0.1",
-    "expo-splash-screen": "~0.17.5",
-    "expo-status-bar": "~1.4.2",
-    "react": "18.1.0",
-    "react-native": "0.70.5",
-    "react-native-gesture-handler": "~2.8.0",
-    "react-native-paper": "^4.12.5",
-    "react-native-reanimated": "~2.12.0",
-    "react-native-safe-area-context": "4.4.1",
-    "react-native-screens": "~3.18.0",
-    "react-native-svg": "13.4.0",
-    "react-native-vector-icons": "^9.2.0",
-    "victory-native": "^36.6.8"
-    "@babel/core": "^7.12.9",
-    "react-native-svg-transformer": "^1.0.0"
+***
+
+### *Table of contents* :
+<font size=2>
+
+- [Table of contents](#table-of-contents-%3A)
+- [Features](#features-%3A)
+- [Contributing](#contributing-%3A)
+- [License](#license-%3A)
+- [Credits](#credits-%3A)
+</font>
+
+## *Features* :
+<font size=2>
+
+- **Adfree**, No annoying ads
+- **Wishlist**, Track your desired cryptocurrency
+- Calculate the current market value provided **crypto calculator**
+</font>
+
+## *Contributing* :
+
  
+  <font  size=2>
+Pull request are welcome.To add some feature or changes please open an issue first to discuss what changes you would like to add. 
+
+- [Contribution guide](./ContributionGuide.md)
+<div>
+
+If you have any questions regarding the project , [join our discord server](https://discord.gg/gJ4c6suV) 
+
+[![Discord](http://invidget.switchblade.xyz/gJ4c6suV)](https://discord.gg/gJ4c6suV)
+</div>
+  </font>
+  
+***
+
+## *License* :
+
+***
+
+## *Credits* :
+
+<div align=center>
+<font size=2>
+
+People who have contributed to this project :
+</font>
+
+  <a href="https://github.com/Hishantik/nativeProject/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Hishantik/nativeProject" />
+</a>
+
+</div>
+
+
+
 
 
 
