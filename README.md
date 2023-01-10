@@ -57,9 +57,9 @@ Pull request are welcome.To add some feature or changes please open an issue fir
 - [Contribution guide](./ContributionGuide.md)
 <div>
 
-If you have any questions regarding the project , [join our discord server](https://discord.gg/gJ4c6suV) 
+If you have any questions regarding the project , [join our discord server](https://discord.gg/3zKtcg9WPG) 
 
-[![Discord](http://invidget.switchblade.xyz/gJ4c6suV)](https://discord.gg/gJ4c6suV)
+[![Discord](http://invidget.switchblade.xyz/3zKtcg9WPG)](https://discord.gg/3zKtcg9WPG)
 </div>
   </font>
   
