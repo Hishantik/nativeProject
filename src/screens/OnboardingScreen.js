@@ -83,10 +83,9 @@ const Onboard = ({ navigation }) => {
             fontWeight: 'bold',
             fontSize: 30,
             marginBottom: -50
-          }}>Onboarding</Text>,
+          }}>Realtime tracking</Text>,
           subtitle: <Text style={{
-
-          }}>Done with React Native Onboarding Swiper</Text>,
+          }}>Get a realtime crypto market price list and data.</Text>,
         },
         {
           backgroundColor: '#3d3d3d',
@@ -101,10 +100,9 @@ const Onboard = ({ navigation }) => {
             fontWeight: 'bold',
             fontSize: 30,
             marginBottom: -50,
-          }}>Onboarding</Text>,
+          }}>Charting</Text>,
           subtitle: <Text style={{
-
-          }}>Done with React Native Onboarding Swiper</Text>,
+          }}>Keep track of loss and gain in the market.</Text>,
         },
         {
           backgroundColor: '#3d3d3d',
@@ -119,10 +117,10 @@ const Onboard = ({ navigation }) => {
             fontWeight: 'bold',
             fontSize: 30,
             marginBottom: -50,
-          }}>Onboarding</Text>,
+          }}>Calculator</Text>,
           subtitle: <Text style={{
 
-          }}>Done with React Native Onboarding Swiper</Text>,
+          }}>Calculate the current price of desired coin.</Text>,
         }
       ]}
     />

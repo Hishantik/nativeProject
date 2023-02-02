@@ -5,6 +5,7 @@ import {
   Text,
   Image,
   TouchableOpacity,
+  StyleSheet,
 } from 'react-native';
 import { useFonts } from 'expo-font';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
@@ -68,9 +69,37 @@ const Main = ({ navigation }) => {
           </LinearGradient>
         </TouchableOpacity>
       </SafeAreaView >
+      <View style={styles.developers}>
+        <Text style={styles.devhead}>Made with ❣️  by ::</Text>
+        <Text style={styles.developerslord}> Hishantik Sarkar & Dipankar das</Text>
+      </View>
+
     </LinearGradient>
   );
 }
 
 
 export default Main;
+
+
+
+
+const styles = StyleSheet.create({
+  developers: {
+    padding: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  devhead: {
+    color: '#ffffff',
+    textDecorationLine: "underline",
+    fontWeight: 'bold',
+
+  },
+  developerslord: {
+    color: '#ffffff',
+    fontWeight: '200'
+  }
+
+
+})
